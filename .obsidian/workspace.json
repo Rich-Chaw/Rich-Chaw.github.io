@@ -1,0 +1,168 @@
+{
+  "main": {
+    "id": "75f2e2e7e5c13cd1",
+    "type": "split",
+    "children": [
+      {
+        "id": "be7dc2e0367fd432",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7320d9038b526c4c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/front matter test.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "71385cde32f46d5f",
+    "type": "split",
+    "children": [
+      {
+        "id": "df4981e96662a2ce",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f3565c701acecae8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e24e097bdced60f8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2baef25fb934cdd6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "3bc201594f937e01",
+    "type": "split",
+    "children": [
+      {
+        "id": "044def14ba939b9d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f080b34c5021555e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/front matter test.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5948a5459265d933",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/front matter test.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4a08e2646fc0e13b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "3b4e8e4c65a449f4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/front matter test.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "7320d9038b526c4c",
+  "lastOpenFiles": [
+    "node_modules/minimatch/lib/path.js",
+    "node_modules/minimatch/lib",
+    "db.json",
+    "public/css/images/banner.jpg",
+    "public/css/style.css",
+    "public/css/images",
+    "public/css",
+    "public/archives/2025/08/index.html",
+    "public/archives/2025/08",
+    "public/js/script.js",
+    "public/js/jquery-3.6.4.min.js",
+    "public/js",
+    "source/_posts/hello-world.md",
+    "source/_posts/我的第一篇hexo博客.md",
+    "source/_posts/front matter test.md",
+    "source/_posts/web/framework/category test.md",
+    "resources/Template/Front-matter.md"
+  ]
+}
