@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/front matter test.md",
+                "file": "source/_posts/web/framework/husky test.md",
                 "mode": "source",
                 "source": true
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/front matter test.md",
+                "file": "source/_posts/web/framework/husky test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/front matter test.md",
+                "file": "source/_posts/web/framework/husky test.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/front matter test.md"
+                "file": "source/_posts/web/framework/husky test.md"
               }
             }
           },
@@ -142,7 +142,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 370.5
+    "width": 335.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -155,23 +155,25 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b3bbf0167ccd1dfb",
+  "active": "7320d9038b526c4c",
   "lastOpenFiles": [
-    "resources/Template/Front-matter.md",
+    "source/_posts/web/framework/category test.md",
+    "source/_posts/web/framework/husky test.md",
+    "node_modules/husky/index.d.ts",
+    "node_modules/husky/README.md",
+    "node_modules/husky/package.json",
+    "node_modules/husky/index.js",
+    "node_modules/husky/bin.js",
+    "node_modules/husky/LICENSE",
+    "node_modules/husky/husky",
+    "node_modules/fsevents",
+    "node_modules/husky",
     "source/_posts/front matter test.md",
+    "resources/Template/Front-matter.md",
     "resources/Template",
     "node_modules/minimatch/lib/path.js",
-    "node_modules/minimatch/lib",
-    "db.json",
     "public/css/images/banner.jpg",
-    "public/css/style.css",
-    "public/css/images",
-    "public/css",
-    "public/archives/2025/08/index.html",
-    "public/archives/2025/08",
-    "public/js/script.js",
     "source/_posts/hello-world.md",
-    "source/_posts/我的第一篇hexo博客.md",
-    "source/_posts/web/framework/category test.md"
+    "source/_posts/我的第一篇hexo博客.md"
   ]
 }
