@@ -1,2 +1,2 @@
 #!/bin/sh
-npx hexo generate && git add .
+hexo cl && hexo generate && git add .
