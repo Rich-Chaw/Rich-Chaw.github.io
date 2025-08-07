@@ -15,7 +15,7 @@
               "state": {
                 "file": "source/_posts/front matter test.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
@@ -128,12 +128,21 @@
                 "file": "source/_posts/front matter test.md"
               }
             }
+          },
+          {
+            "id": "b3bbf0167ccd1dfb",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 370.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -142,11 +151,15 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7320d9038b526c4c",
+  "active": "b3bbf0167ccd1dfb",
   "lastOpenFiles": [
+    "resources/Template/Front-matter.md",
+    "source/_posts/front matter test.md",
+    "resources/Template",
     "node_modules/minimatch/lib/path.js",
     "node_modules/minimatch/lib",
     "db.json",
@@ -157,12 +170,8 @@
     "public/archives/2025/08/index.html",
     "public/archives/2025/08",
     "public/js/script.js",
-    "public/js/jquery-3.6.4.min.js",
-    "public/js",
     "source/_posts/hello-world.md",
     "source/_posts/我的第一篇hexo博客.md",
-    "source/_posts/front matter test.md",
-    "source/_posts/web/framework/category test.md",
-    "resources/Template/Front-matter.md"
+    "source/_posts/web/framework/category test.md"
   ]
 }
