@@ -1,2 +1,2 @@
 #!/bin/sh
-hexo cl && hexo generate && git add .
+hexo generate && git add .
