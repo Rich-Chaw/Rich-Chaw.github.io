@@ -1,1 +1,5 @@
-{}
+{
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "source/images/husky test",
+  "useMarkdownLinks": true
+}
