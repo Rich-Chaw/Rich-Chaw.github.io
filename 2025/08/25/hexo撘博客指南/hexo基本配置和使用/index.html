@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="nodejs 建议用nvm管理nodejs版本 nvm常用指令 12345678nvm -v  查看nvm版本nvm ls  查看当前nodejs版本nvm ls available 查看可获得的nodejs版本 可选LTS稳定版本nvm install&#x2F;nvm unisntall &lt;version&gt;  安装卸载版本nvm use &lt;version&gt;  使用版本node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo基本配置和使用">
+<meta property="og:url" content="http://example.com/2025/08/25/hexo%E6%92%98%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/hexo%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="nodejs 建议用nvm管理nodejs版本 nvm常用指令 12345678nvm -v  查看nvm版本nvm ls  查看当前nodejs版本nvm ls available 查看可获得的nodejs版本 可选LTS稳定版本nvm install&#x2F;nvm unisntall &lt;version&gt;  安装卸载版本nvm use &lt;version&gt;  使用版本node">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-25T07:08:36.000Z">
+<meta property="article:modified_time" content="2025-08-25T08:31:25.452Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2025/08/25/hexo%E6%92%98%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/hexo%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>hexo基本配置和使用 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/25/hexo%E6%92%98%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/hexo%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo基本配置和使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-08-25 15:08:36 / Modified: 16:31:25" itemprop="dateCreated datePublished" datetime="2025-08-25T15:08:36+08:00">2025-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo%E6%92%98%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">hexo撘博客指南</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>nodejs 建议用nvm管理nodejs版本</p>
+<p>nvm常用指令 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nvm -v  查看nvm版本</span><br><span class="line">nvm ls  查看当前nodejs版本</span><br><span class="line">nvm ls available 查看可获得的nodejs版本 可选LTS稳定版本</span><br><span class="line">nvm install/nvm unisntall &lt;version&gt;  安装卸载版本</span><br><span class="line">nvm use &lt;version&gt;  使用版本</span><br><span class="line">node -v  nodejs版本</span><br><span class="line">npm-v    npm版本</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>在使用nvm前，先将安装的nodejs卸载</p>
+<p>Windows 中卸载nodejs</p>
+<ul>
+<li><p><strong>卸载程序</strong> 打开“控制面板”，选择“程序和功能”。 找到
+Node.js，右键选择“卸载”。</p></li>
+<li><p><strong>删除相关文件夹</strong> 删除以下目录中的文件：</p></li>
+<li><p>C:Files</p></li>
+<li><p>C:&lt;用户名&gt;</p></li>
+<li><p>C:&lt;用户名&gt;-cache
+如果有自定义安装路径，也需删除对应的文件夹。</p></li>
+<li><p><strong>清理环境变量</strong> 打开“系统属性” &gt; “高级” &gt;
+“环境变量”。 检查并删除与 Node.js 或 npm 相关的路径。</p></li>
+<li><p><strong>验证卸载是否成功</strong> 打开命令提示符，输入： where
+node 如果没有返回路径，说明已成功卸载。</p></li>
+</ul>
+<p>安装nvm 下载地址<a
+target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">Releases ·
+coreybutler/nvm-windows</a>，这里我下载了1.1.12版本</p>
+<p>nvm后续升级
+下载新版本的安装包，安装时nvm路径和nodejs都和已有版本一致，安装完就升级到新版本了</p>
+<p>设置镜像（可选，未实测） ##node淘宝镜像
+node_mirror:https://npmmirror.com/mirrors/node/ ##npm淘宝镜像
+npm_mirror:https://npmmirror.com/mirrors/npm/</p>
+<p>也有写成的 node_mirror=https://npmmirror.com/mirrors/node/
+npm_mirror=https://npmmirror.com/mirrors/npm/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 14.14.0</span><br></pre></td></tr></table></figure>
+<p>下载完后，先切换到对应版本，再查看node和npm版本 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm use 14.14.0</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></p>
+<p>设置全局路径和缓存 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局路径</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">&quot;xxx\node_global&quot;</span></span><br><span class="line"><span class="comment"># 缓存</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">&quot;xxx\node_cache&quot;</span></span><br></pre></td></tr></table></figure></p>
+<p>记得设置系统环境变量</p>
+<ol type="1">
+<li>系统变量”中找到 <em>Path</em>，点击“编辑”。</li>
+<li>添加以下路径： xxx_global xxx_global_modules.bin</li>
+</ol>
+<p>查看当前的全局路径和缓存设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br><span class="line">npm config get cache</span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20250801100456.png]]</p>
+<p>什么是npx <strong>npx</strong> 是 npm
+从 <strong>5.2.0</strong> 版本开始引入的命令行工具，用于简化执行项目依赖中的可执行脚本。它的主要功能是避免全局安装工具，同时提高开发效率。</p>
+<p>核心功能 npx 的主要作用是直接运行本地或远程 npm
+包中的命令，而无需手动安装。
+自动查找项目中 <em>node_modules/.bin</em> 目录下的可执行文件。如果本地找不到对应的包，会临时从远程下载并执行，执行后自动删除。</p>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/HuangsTing/article/details/113857145">window下安装并使用nvm（含卸载node、卸载nvm、全局安装npm）-CSDN博客</a>
+<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/549089297">Hexo历险记之三本地安装Hexo
+- 知乎</a></p>
+<p>查看所有可安装版本 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm view hexo-cli versions</span><br></pre></td></tr></table></figure></p>
+<p>安装最新版hexo： 方式一：安装hexo-cli（建议） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+在后面运行初始化<code>hexo init</code>和安装依赖<code>npm install</code>的时候，其实就会一同下载<code>hexo</code>
+尾缀<code>CLI</code>就是<code>Command Line Interface</code>也即是命令行</p>
+<p>方式二：直接安装hexo <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>安装指定版本hexo： 为了避免版本冲突，建议安装指定版本。 本篇版本为
+==node20.18.1 + hexo-cli 4.0.0==</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli@4.0.0</span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20250806193149.png]]</p>
+<p>验证是否安装成功 hexo -v 查看hexo版本</p>
+<p>如果是win，在安装过程中会出现SKIPPING OPTIONAL
+DEPENDENCY等警告，不用管 ![[Pasted image 20250801101832.png]]</p>
+<h2 id="开始使用hexo">1. 开始使用hexo</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;blogName&gt;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;blogName&gt;</code>是博客目录名，将<code>&lt;blogName&gt;</code>替换为你想为你的博客目录命名的任何名称。这个命令创建一个新目录，并包含必要的Hexo文件，如下所示。</p>
+<p>![[Pasted image 20250801110453.png]]</p>
+<p>比如 初始化一个名为blog的博客仓库 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></p>
+<p>等价于创建博客目录blog后再init <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure></p>
+<p>!注意：建立博客目录后，往后的终端指令都在xxxx/blog路径下，右键打开git
+Bash后，执行，并且在以后想要发布网页的时候也需要在该文件夹下执行指令。</p>
+<p>创建一个自己的markdown文件 hexo new
+“我的第一篇hexo博客”，会生成<code>我的第一篇hexo博客.md</code>文件会放在博客目录的 <code>./source/_posts/</code> 目录下
+注意：hexo init之后默认会生成一个<code>hello-world.md</code></p>
+<p>![[Pasted image 20250801165339.png]]</p>
+<p>用编辑器编辑文档内容，并保存 ![[Pasted image 20250801165552.png]]</p>
+<p><code>npm install</code>安装必要的依赖项 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure> ![[Pasted
+image 20250801110732.png]]</p>
+<p><code>hexo g</code>生成 ![[Pasted image 20250806193846.png]]
+<code>hexo s</code>启动本地预览，可以实时修改新增，修改和预览博客，或修改主题设置
+![[Pasted image 20250801113523.png]]
+浏览器打开网址：http://localhost:4000/，可以看到 注意不要只打开
+localhost，要输入完整的网址，ctrl+c 退出预览 ![[Pasted image
+20250801170005.png]]</p>
+<p>==hexo clean每次生成前都要用吗==： 说是在hexo s或hexo
+d前需要，以避免主页未同步问题。hexo g之前不用</p>
+<p>一个非常常用的指令，直接清理，生成，预览一条龙 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure></p>
+<p>hexo常用命令 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在博客目录下执行</span></span><br><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录， 用`/source/_posts/`文件夹下的所有MD文件渲染生成新的`/public/`缓存</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server），提供访问`/public/`文件夹的页面</span></span><br><span class="line">hexo deploy <span class="comment">#部署到GitHub</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可在任意目录下执行</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure></p>
+<p>对应缩写 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo n == hexo new </span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo cl == hexo clean</span><br><span class="line">hexo s == hexo server</span><br></pre></td></tr></table></figure></p>
+<h2 id="部署到github主页">2. 部署到github主页</h2>
+<p>静态网站托管服务使用 <code>Github Pages</code> ，github的这个服务是免费的，因此很多个人博客都会使用这个服务，并且免去了各种意义上的麻烦，<del>包括穷的麻烦。</del> 以下是 <code>Github Pages</code> 的官方文档：
+<a
+target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages">Github
+Pages</a></p>
+<p>新建一个github仓库
+给仓库起个名称，注意！注意！注意！用户名必须用github账号的用户名</p>
+<blockquote>
+<p>仓库名称格式： 用户名.github.io</p>
+</blockquote>
+<p>编辑博客目录下的_config.yml 拉到文件最后：填入 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:Rich-Chaw/Rich-Chaw.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure></p>
+<p>![[Pasted image 20250801160310.png]]</p>
+<p>这里我使用ssh，注意在git bash下用<code>ssh -T git@github.com</code>
+检查ssh能否连通，出现如下信息表示能连通</p>
+<p>![[Pasted image 20250801163354.png]] 如果不能，参阅 [[Git-SSH]]</p>
+<p>也可以用http，未测试，不确定需不需要额外的配置</p>
+<p>![[Pasted image 20250807195458.png]]</p>
+<p>运行完 hexo d
+之后，博客目录下会出现.deploy_git文件夹，点进去可以看到它和git仓库main分支里的内容是一致的，是对博客目录下public文件夹中的同步</p>
+<p>直接访问github的域名：<code>https://你的用户名.github.io/</code></p>
+<p>可以看到和用<code>hexo s</code>本地预览的界面是一致的 ![[Pasted image
+20250801165843.png]]</p>
+<p>全局安装，会下载到指定的node_global目录里 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g &lt;package_name&gt;</span><br><span class="line">npm uninstall -g &lt;package_name&gt;</span><br></pre></td></tr></table></figure></p>
+<p>卸载后，可以清除缓存 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean -f</span><br></pre></td></tr></table></figure></p>
+<p>检查 <em>node_modules</em> 目录是否已移除对应包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls node_modules # Unix 系统</span><br><span class="line">dir node_modules # Windows 系统</span><br></pre></td></tr></table></figure></p>
+<p>常见问题： hexo s后无法用Ctrl+c 停止预览</p>
+<p>对于windows：关闭当前git
+bash窗口，在cmd窗口中关闭端口4000对应的pid后，再新建git bash窗口
+对于linux：ps aux | grep hexo 命令查找正在运行的 hexo 进程。 找到进程的
+PID（进程 ID），然后使用 <code>kill -9 &lt;PID&gt;</code></p>
+<p>注意：
+直接在新建的<code>git bash</code>窗口中运行<code>hexo s</code>，会出现</p>
+<p>![[Pasted image 20250801151439.png]]</p>
+<p>因此，新建之前，一定要在<code>cmd</code>窗口中关闭端口<code>4000</code>对应的<code>pid</code>
+（在git bash下可能会关闭不了，会出现看不懂的乱码！）</p>
+<p>在cmd下查看端口对应的进程，并关闭进程 查看所有进程</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+<p>查看想要查看端口的进程信息</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 4000</span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20250801150434.png]]</p>
+<p>这里说明进程18508，占用了端口4000，终止进程 18508</p>
+<p>taskkill /pid <进程id> -f ![[Pasted image 20250801150449.png]]</p>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/details/127047943?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-127047943-blog-132337172.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">windows查看端口占用和结束端口进程_window-CSDN博客</a></p>
+<p>![[Pasted image 20250801161847.png]] 1. 安装 hexo-deployer-git
+插件</p>
+<p>要解决这个问题，需要安装 <em>hexo-deployer-git</em> 插件。</p>
+<p>在博客目录下打开git
+bash，运行安装指令，这个安装指令没有-g，因此会安装在博客目录下
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【保姆级】利用Github搭建自己的个人博客，看完就会
+- 知乎</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/25/%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/" rel="prev" title="公式测试">
+      <i class="fa fa-chevron-left"></i> 公式测试
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8hexo"><span class="nav-number">1.</span> <span class="nav-text">1. 开始使用hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%BB%E9%A1%B5"><span class="nav-number">2.</span> <span class="nav-text">2. 部署到github主页</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

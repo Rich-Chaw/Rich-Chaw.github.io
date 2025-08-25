@@ -1,304 +1,780 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>噪声对比估计-NCE | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="NCE目标函数：$$\begin{aligned}\max_\theta J^c(\theta)&amp;&#x3D;\max_\theta \mathbb{E}X[log P\theta( D | w , θ)]\&amp;&#x3D;\max_\theta \left(\mathbb{E}{P(w|c)}\left[\log\frac{P\theta(w|c)}{P_\theta(w|c)+k">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="NCE目标函数： $$ \begin{eqnarray} \nabla\cdot\vec{E} &amp;&#x3D;&amp; \frac{\rho}{\epsilon_0} \\ \nabla\cdot\vec{B} &amp;&#x3D;&amp; 0 \\ \nabla\times\vec{E} &amp;&#x3D;&amp; -\frac{\partial B}{\partial t} \\ \nabl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="噪声对比估计-NCE">
 <meta property="og:url" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="NCE目标函数：$$\begin{aligned}\max_\theta J^c(\theta)&amp;&#x3D;\max_\theta \mathbb{E}X[log P\theta( D | w , θ)]\&amp;&#x3D;\max_\theta \left(\mathbb{E}{P(w|c)}\left[\log\frac{P\theta(w|c)}{P_\theta(w|c)+k">
+<meta property="og:description" content="NCE目标函数： $$ \begin{eqnarray} \nabla\cdot\vec{E} &amp;&#x3D;&amp; \frac{\rho}{\epsilon_0} \\ \nabla\cdot\vec{B} &amp;&#x3D;&amp; 0 \\ \nabla\times\vec{E} &amp;&#x3D;&amp; -\frac{\partial B}{\partial t} \\ \nabl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-08-25T02:08:52.000Z">
-<meta property="article:modified_time" content="2025-08-25T02:51:20.421Z">
+<meta property="article:modified_time" content="2025-08-25T09:02:19.127Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="canonical" href="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/">
 
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>噪声对比估计-NCE | Hexo</title>
   
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<!-- hexo injector head_end end --></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-机器学习/3.对比学习/噪声对比估计-NCE" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/" class="article-date">
-  <time class="dt-published" datetime="2025-08-25T02:08:52.000Z" itemprop="datePublished">2025-08-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>►<a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/">3.对比学习</a>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
 
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      噪声对比估计-NCE
-    </h1>
-  
+</div>
 
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          噪声对比估计-NCE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-08-25 10:08:52 / Modified: 17:02:19" itemprop="dateCreated datePublished" datetime="2025-08-25T10:08:52+08:00">2025-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">3.对比学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>NCE目标函数：<br>$$\begin{aligned}\max_\theta J^c(\theta)&amp;&#x3D;\max_\theta \mathbb{E}<em>X[log P</em>\theta( D | w , θ)]<br>\&amp;&#x3D;\max_\theta \left(\mathbb{E}<em>{P(w|c)}\left[\log\frac{P</em>\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}<em>{P(w)}\left[\log\frac{kP(w)}{P</em>\theta(w|c)+kP(w)}\right] \right)\end{aligned}$$</p>
-<p>最早提出NCE思想的论文<br><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive Estimation of Unnormalized Statistical Models-2010</a><br><a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive Estimation of Unnormalized Statistical Models, with Applications to Natural Image Statistics-2012</a><br>给出了具体的NCE算法，本文主要参考来源于此<br><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for training neural probabilistic language models-2012</a></p>
-<p>回顾一下分布的知识：<br>设真实数据概率分布的概率密度函数为 $P_d(\cdot)$ ，以下简称分布 $P_d(\cdot)$<br>机器学习的主要目标是 用一个参数为 $\theta$ 的分布 $P_\theta(\cdot)$ 估计  $P_d(\cdot)$，$P_\theta(\cdot)$称为预测概率分布</p>
+        <p>NCE目标函数：</p>
+<p><span class="math display">$$
+\begin{eqnarray}
+\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\
+\nabla\cdot\vec{B} &amp;=&amp; 0 \\
+\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\
+\nabla\times\vec{B} &amp;=&amp;
+\mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
+\end{eqnarray}
+$$</span></p>
+<p><span class="math display">$$
+\begin{aligned}
+y &amp;= w_i*x_i +b \\
+&amp;= WX+b
+\end{aligned}
+$$</span> 的的 <span class="math display">$$
+\begin{aligned}
+J^c &amp;= x\\
+&amp;= x \\
+&amp;= y \\
+\end{aligned}
+$$</span></p>
+<p>最早提出NCE思想的论文 <a
+target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive
+Estimation of Unnormalized Statistical Models-2010</a> <a
+target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive
+Estimation of Unnormalized Statistical Models, with Applications to
+Natural Image Statistics-2012</a>
+给出了具体的NCE算法，本文主要参考来源于此 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for
+training neural probabilistic language models-2012</a></p>
+<p>回顾一下分布的知识： 设真实数据概率分布的概率密度函数为 <span
+class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>
+，以下简称分布 <span
+class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>。机器学习的主要目标是
+用一个参数为 <span class="math inline"><em>θ</em></span> 的分布 <span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span> 估计 <span
+class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>，<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>称为预测概率分布</p>
 <blockquote>
-<p>如果能知道$P_\theta(\cdot)$的形式，比如是正态分布或指数分布，那么可以直接学习 $\theta$ 的值<br>但大部分情况下我们并不知道具体形式，所以是对每个给定数据的估计概率值，也就是直接学习概率分布</p>
+<p>如果能知道<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>的形式，比如是正态分布或指数分布，那么可以直接学习
+<span class="math inline"><em>θ</em></span> 的值。
+但大部分情况下我们并不知道具体形式，所以是对每个给定数据的估计概率值，也就是直接学习概率分布。</p>
 </blockquote>
-<p>概率分布要满足积分为1，即 $\int P(x)dx &#x3D; 1$</p>
-<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件<br>$$P_\theta(\cdot)&#x3D;\frac{\hat{P}<em>\theta(\cdot)}{Z</em>\theta}$$<br>其中分子是非归一化的概率分布，分母 $Z_\theta$ 是配分函数（Partition Function）也称为归一化常数 （Normalized Constant） 或 Marginalized Evidence </p>
-<p>用神经网络来估计为例<br>logits 层的输出 是非归一化的概率分布<br>经过softmax层之后才是 归一化的概率分布</p>
-<h2 id="1-NCE-Noise-Contrastive-Estimation"><a href="#1-NCE-Noise-Contrastive-Estimation" class="headerlink" title="1. NCE: Noise Contrastive Estimation"></a>1. NCE: Noise Contrastive Estimation</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for training neural probabilistic language models</a><br>NCE 是一个机器学习的方法，不涉及神经网络</p>
-<ul>
-<li>学习一个参数来表示 $Z_\theta$</li>
-<li>学习一个能区分 从真实数据分布和噪声分布采样数据的模型的模型</li>
-</ul>
-<p>假设我们的数据是文本，任务是根据给定的上下文context $c$，预测目标target为单词 $w$ ，希望学习到一个参数为$\theta$（用$\theta$参数化）的预测分布来估计&#x2F;建模真实分布：<br>$$P(w|c) \approx P_\theta(w|c)$$<br>让我们假设预测分布 $P_\theta$ 服从某一个指数族分布，任务是学习该分布的参数$\theta$ 值<br>$$P_\theta(w|c):&#x3D;:\frac{\exp{s_\theta(w,c)}}{\sum_{w\in V}\exp{s_\theta(w,c)}}:&#x3D;:\frac{u_\theta(w,c)}{Z_\theta}$$<br>$V$为词汇表，$S_θ(w,c)$是参数为 $θ$ 的评分函数，它量化了词$w$与上下文$c$的相容性，一般定义为向量点积</p>
-<h3 id="1-1-ML-method"><a href="#1-1-ML-method" class="headerlink" title="1.1. ML method"></a>1.1. ML method</h3><p>在机器学习（ML）方法中，是通过最大似然估计（Maximum likelihood estimation,MLE）(假设所有样本之间相互独立)来优化参数 $\theta$，目标函数为最大化对数似然$\log P_\theta(w|c)$的期望：</p>
-<p>$$\max_\theta L^c(\theta)&#x3D;\max_\theta\mathbb{E}<em>{w\sim P(w|c)}\left[\log P</em>\theta(w|c)\right]$$<br>这个期望展开为<br>$$<br>\mathbb{E}<em>{w\sim P(w|c)}\left[\log P</em>\theta(w|c)\right] &#x3D; \sum_{w \in V}P(w|c)\log P_\theta(w|c)<br>$$</p>
-<p>对应的损失函数为  负对数似然$\log P_\theta(w|c)$的期望<br>$$\mathcal{L}<em>{MLE} &#x3D; -L^c(\theta)&#x3D;-\mathbb{E}</em>{w\sim P(w|c)}\left[\log P_\theta(w|c)\right] &#x3D; -\sum_{w \in V}P(w|c)\log P_\theta(w|c)$$<br>可以看到，这个其实就是类别数为 $|V|$ 的多分类交叉熵，</p>
-<p>梯度为<br>$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;&#x3D;\frac{\partial}{\partial\theta} \mathbb{E}<em>{w\sim P(w|c)}\left[\log P</em>{\theta}(w|c)\right]\&amp;&#x3D;\frac{\partial}{\partial\theta}\mathbb{E}<em>{w\sim P(w|c)}\left[\log\frac{\exp{s</em>\theta(w,c)}}{Z_\theta}\right]\<br>&amp;&#x3D;\frac{\partial}{\partial\theta}\mathbb{E}<em>{w\sim P(w|c)}s</em>\theta(w,c) - \frac{\partial}{\partial\theta} logZ_\theta\<br>&amp;&#x3D;\sum_{w\in V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)<br>\end{aligned}$$</p>
-<p>实际计算中，给定一个在上下文 $c$ 中观察到的词 $w$，就对$L^c(\theta)$求一次梯度，P(w|c)只对观察到的词 $w$，为1：<br>$$<br>\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;&#x3D;\sum_{w\in V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)\<br>&amp;&#x3D;\frac{\partial}{\partial\theta}s_\theta(w,c)-\sum_{w\in V}\frac{\exp s_\theta(w,c)}{\sum_{w\in V}\exp{s_\theta(w,c)}})\frac{\partial}{\partial\theta}s_\theta(w,c)<br>\end{aligned}<br>$$</p>
-<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的$s_θ ( w , c)$来求 $P_\theta(w|c)$ 中的$Z_{\theta}$</p>
-<p>论文里提到了Importance sampling 来解决 $Z_{\theta}$ 计算复杂度高的问题，但是存在一些缺点。</p>
-<h3 id="1-2-NCE-method"><a href="#1-2-NCE-method" class="headerlink" title="1.2. NCE method"></a>1.2. NCE method</h3><p>噪声对比估计（Noise-Contrastive Estimation，NCE）:一种参数学习方法</p>
-<p>不是通过最大似然估计直接求参数，而是通过对比来求参数，任务是学习一个能区分从真实数据分布和噪声分布采样数据的模型，从而学习到 $P_\theta(w|c)$</p>
-<p>这个模型其实就是一个二元分类器 $P_\theta(D|w,c)$ ，来估计$P(D|w,c)$ ，标签D&#x3D;1或0分别表示 $w$ 是来自真实数据分布 $P(w|c)$ （论文中称为 $P^c_d$ ），还是噪声分布 $P(w)$ （论文中称为 $P_n$ ）</p>
+<p>概率分布要满足积分为1，即 <span
+class="math inline">∫<em>P</em>(<em>x</em>)<em>d</em><em>x</em> = 1</span></p>
+<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件 <span
+class="math display">$$P_\theta(\cdot)=\frac{\hat{P}_\theta(\cdot)}{Z_\theta}$$</span>
+其中分子是非归一化的概率分布，分母 <span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+是配分函数（Partition Function）也称为归一化常数 （Normalized Constant）
+或 Marginalized Evidence</p>
+<p>用神经网络来估计为例 logits 层的输出 是非归一化的概率分布
+经过softmax层之后才是 归一化的概率分布</p>
+<h2 id="nce-noise-contrastive-estimation">1. NCE: Noise Contrastive
+Estimation</h2>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm
+for training neural probabilistic language models</a> NCE
+是一个机器学习的方法，不涉及神经网络 - 学习一个参数来表示 <span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span> -
+学习一个能区分 从真实数据分布和噪声分布采样数据的模型的模型</p>
+<p>假设我们的数据是文本，任务是根据给定的上下文context <span
+class="math inline"><em>c</em></span>，预测目标target为单词 <span
+class="math inline"><em>w</em></span> ，希望学习到一个参数为<span
+class="math inline"><em>θ</em></span>（用<span
+class="math inline"><em>θ</em></span>参数化）的预测分布来估计/建模真实分布：
+<span
+class="math display"><em>P</em>(<em>w</em>|<em>c</em>) ≈ <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+让我们假设预测分布 <span
+class="math inline"><em>P</em><sub><em>θ</em></sub></span>
+服从某一个指数族分布，任务是学习该分布的参数<span
+class="math inline"><em>θ</em></span> 值 <span
+class="math display">$$P_\theta(w|c)=\frac{\exp\{s_\theta(w,c)\}}{\sum_{w\in
+V}\exp\{s_\theta(w,c)\}}=\frac{u_\theta(w,c)}{Z_\theta}$$</span> <span
+class="math inline"><em>V</em></span>为词汇表，<span
+class="math inline"><em>S</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>是参数为
+<span class="math inline"><em>θ</em></span> 的评分函数，它量化了词<span
+class="math inline"><em>w</em></span>与上下文<span
+class="math inline"><em>c</em></span>的相容性，一般定义为向量点积</p>
+<h3 id="ml-method">1.1. ML method</h3>
+<p>在机器学习（ML）方法中，是通过最大似然估计（Maximum likelihood
+estimation,MLE）(假设所有样本之间相互独立)来优化参数 <span
+class="math inline"><em>θ</em></span>，目标函数为最大化对数似然<span
+class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望：</p>
+<p><span
+class="math display">max<sub><em>θ</em></sub><em>L</em><sup><em>c</em></sup>(<em>θ</em>) = max<sub><em>θ</em></sub>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)]</span>
+这个期望展开为 <span
+class="math display">𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = ∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>对应的损失函数为 负对数似然<span
+class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望
+<span
+class="math display">ℒ<sub><em>M</em><em>L</em><em>E</em></sub> = −<em>L</em><sup><em>c</em></sup>(<em>θ</em>) = −𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = −∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+可以看到，这个其实就是类别数为 <span
+class="math inline">|<em>V</em>|</span> 的多分类交叉熵，</p>
+<p>梯度为 <span
+class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\frac{\partial}{\partial\theta}
+\mathbb{E}_{w\sim P(w|c)}\left[\log
+P_{\theta}(w|c)\right]\\&amp;=\frac{\partial}{\partial\theta}\mathbb{E}_{w\sim
+P(w|c)}\left[\log\frac{\exp\{s_\theta(w,c)\}}{Z_\theta}\right]\\
+&amp;=\frac{\partial}{\partial\theta}\mathbb{E}_{w\sim
+P(w|c)}s_\theta(w,c) - \frac{\partial}{\partial\theta} logZ_\theta\\
+&amp;=\sum_{w\in
+V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)
+\end{aligned}$$</span></p>
+<p>实际计算中，给定一个在上下文 <span
+class="math inline"><em>c</em></span> 中观察到的词 <span
+class="math inline"><em>w</em></span>，就对<span
+class="math inline"><em>L</em><sup><em>c</em></sup>(<em>θ</em>)</span>求一次梯度，<span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+只对观察到的词 <span class="math inline"><em>w</em></span>，为1： <span
+class="math display">$$
+\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\sum_{w\in
+V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)\\
+&amp;=\frac{\partial}{\partial\theta}s_\theta(w,c)-\sum_{w\in
+V}\frac{\exp s_\theta(w,c)}{\sum_{w\in
+V}\exp\{s_\theta(w,c)\}})\frac{\partial}{\partial\theta}s_\theta(w,c)
+\end{aligned}
+$$</span></p>
+<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的<span
+class="math inline"><em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>来求
+<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+中的<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span></p>
+<p>论文里提到了Importance sampling 来解决 <span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+计算复杂度高的问题，但是存在一些缺点。</p>
+<h3 id="nce-method">1.2. NCE method</h3>
+<p>噪声对比估计（Noise-Contrastive
+Estimation，NCE）:一种参数学习方法</p>
+<p>不是通过最大似然估计直接求参数，而是通过对比来求参数，任务是学习一个能区分从真实数据分布和噪声分布采样数据的模型，从而学习到
+<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>这个模型其实就是一个二元分类器 <span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+，来估计<span
+class="math inline"><em>P</em>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+，标签D=1或0分别表示 <span class="math inline"><em>w</em></span>
+是来自真实数据分布 <span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+（论文中称为 <span
+class="math inline"><em>P</em><sub><em>d</em></sub><sup><em>c</em></sup></span>
+），还是噪声分布 <span class="math inline"><em>P</em>(<em>w</em>)</span>
+（论文中称为 <span
+class="math inline"><em>P</em><sub><em>n</em></sub></span> ）</p>
 <blockquote>
 <p>二元分类器可以通过逻辑回归来进行学习。</p>
 </blockquote>
-<p>在噪声对比估计中，往往在数据分布 $P(w|c)$ 中采样1个正样本w，标签D&#x3D;1。然后从噪声分布 $P(w)$ 中采样k个负样本w，标签D&#x3D;0</p>
-<p>也就是说，这k+1个样本构成的样本集$X$来自分布 $\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</p>
-<p>那么标签D&#x3D;1，即样本来自真实分布 $P(w|c)$的后验概率为<br>$$P(D&#x3D;1|w,c)&#x3D;\frac{P(w|c)}{P(w|c)+kP(w)}$$</p>
-<p>由于我们希望用$P_θ(w|c)$拟合$P(w|c)$，所以我们用$P_θ(w|c)$代替方程中的$P(w|c)$，使后验概率成参数$θ$的函数：<br>$$P_\theta(D&#x3D;1|w,c)&#x3D;\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</p>
-<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集$X$上做优化，最大化对数似然$log P_\theta( D | w , θ)$的期望值<br>$$\begin{aligned}\max_\theta J^c(\theta)&amp;&#x3D;\max_\theta \mathbb{E}<em>X[log P</em>\theta( D | w , θ)]<br>\&amp;&#x3D;\max_\theta \left(\mathbb{E}<em>{P(w|c)}\left[\log\frac{P</em>\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}<em>{P(w)}\left[\log\frac{kP(w)}{P</em>\theta(w|c)+kP(w)}\right] \right)\end{aligned}$$</p>
-<p>对$J^c(\theta)$ 求梯度<br>$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;&#x3D; \frac{\partial} {\partial\theta}\left(\mathbb{E}<em>{P(w|c)}\left[\log\frac{P</em>\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}<em>{P(w)}\left[\log\frac{kP(w)}{P</em>\theta(w|c)+kP(w)}\right] \right)<br>\<br>&amp;&#x3D;\mathbb{E}<em>{P(w|c)}\left[\frac{kP(w)}{P</em>\theta(w|c)+kP(w)}\frac{\partial} {\partial\theta}\log P_\theta(w|c)\right]-k\mathbb{E}<em>{P(w)}\left[\frac{P</em>\theta(w|c)}{P_\theta(w|c)+kP(w)}\frac{\partial} {\partial\theta}\log P_\theta(w|c)\right]\<br>&amp;&#x3D;\sum_{w\in V}(P(w|c)-P_\theta(w|c))\frac{kP(w)}{P_\theta(w|c)+kP(w)}\frac{\partial}{\partial\theta}\log P_\theta(w|c)\end{aligned}$$</p>
-<p>当 $k → ∞$，趋近于最大似然的梯度<br>$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in v}(P(w|c)-P_\theta(w|c))\frac{\partial}{\partial\theta}\log P_\theta(w|c)$$</p>
-<p>实际训练过程中，给定一个在上下文$c$中观察到的词$w$，我们通过生成$k$个噪声样本$x_1,\dots,x_k$，$w$对梯度的贡献为<br>$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&#x3D;&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\&amp;\begin{aligned}\sum_{i&#x3D;1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log P_\theta(x_i|c)\right]\end{aligned}\end{aligned}$$</p>
-<p>注意 $\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$ 的值一定在0到1之间，不像importance sampling的方法一样会变得方差很大，基于NCE的学习是很稳定的</p>
-<p>上文所述的 $J^c(\theta)$ 用于学习对某一个上下文$c$的分布$p(w|c)$，称为局部NCE目标函数</p>
-<p>通过使用经验上下文概率P(c)作为权重来组合每个上下文c的NCE目标，定义全局NCE目标函数<br>$$J(\theta)&#x3D;\sum_cP(c)J(\theta)$$</p>
-<h3 id="1-3-Dealing-with-normalizing-constants"><a href="#1-3-Dealing-with-normalizing-constants" class="headerlink" title="1.3. Dealing with normalizing constants"></a>1.3. Dealing with normalizing constants</h3><p>如上文所述， $P_\theta(w|c)$ 中的$Z_{\theta}$难以计算。NCE通过避免显式归一化和将$Z_{\theta}$作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为 $\theta^0$ 非归一化分布$P_{θ^0}(w|c)$和一个参数$\phi$用于表示$Z_{\theta}$的对数<br>$$P_\theta(w|c)&#x3D;P_{\theta^0}(w|c)\exp(\phi)$$<br>那么 参数 $\theta &#x3D; {\theta^0,\phi}$<br>每对一个上下文 $c$ 都需要学习一个对应的 $\phi$，这使得难以扩展到具有大规模上下文的情况。</p>
-<h4 id="1-3-1-negative-sampling-负采样"><a href="#1-3-1-negative-sampling-负采样" class="headerlink" title="1.3.1. negative sampling 负采样"></a>1.3.1. negative sampling 负采样</h4><p>论文发现将$Z_{\theta}$固定为1效果也很好，使用 $Z_{\theta}&#x3D;1$ 时的$J^c(\theta)$ 作为目标函数的方法为称为 负采样。</p>
-<p>比如用负采样改进的了word2vec<br>$$\begin{aligned}P(D&#x3D;0\mid w,c)&amp;&#x3D;\frac{1}{u_\theta(w,c)+1}\P(D&#x3D;1\mid w,c)&amp;&#x3D;\frac{u_\theta(w,c)}{u_\theta(w,c)+1}.\end{aligned}$$<br>$u_\theta(w,c) &#x3D; \exp{s_\theta(w,c)}$</p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1410.8251">Notes on Noise Contrastive Estimation and Negative Sampling</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记] Word2Vec: 基于负采样的 Skip-gram 及其 SGD 训练 - 博客园</a></p>
-<h3 id="1-4-复杂度"><a href="#1-4-复杂度" class="headerlink" title="1.4. 复杂度"></a>1.4. 复杂度</h3><p>假设$c$是上下文大小，$d$是单词特征向量维度，$V$是模型的词汇量大小。</p>
-<p>利用公式计算预测表示，NCE和ML学习都需要进行$cd^2$操作。<br>对于ML，从预测的表示中计算下一个单词的分布大约需要$Vd$个操作。<br>对于NCE，在k个噪声样本下的分类为正样本的概率大约需要$kd$次操作<br>由于 k&lt;&lt;|V|，所以NCE大大提升了计算速度</p>
-<h3 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5. 总结"></a>1.5. 总结</h3><p>总结一下，NCE做了两件事</p>
-<ul>
-<li>更改了目标函数，任务从多分类问题到二分类问题</li>
-<li>验证了 $Z_{\theta}$ 在基于NCE的训练中可以直接设为1</li>
-</ul>
-<h2 id="2-扩展阅读，另一个博主的推导"><a href="#2-扩展阅读，另一个博主的推导" class="headerlink" title="2. 扩展阅读，另一个博主的推导"></a>2. 扩展阅读，另一个博主的推导</h2><p>感觉还是原论文里写的更精炼</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：<br>在给定 $c$ 的情况下，正负样本的概率分别为<br>$$\begin{aligned}P(d&#x3D;1,w|c):&#x3D;P(w|d&#x3D;1,c)P(d&#x3D;1|c)&amp;&#x3D;P(w|d&#x3D;1,c)P(d&#x3D;1)\&amp;&#x3D;P(w|d&#x3D;1,c)\frac{1}{1+k}\end{aligned}$$<br>$$\begin{aligned}P(d&#x3D;0,w|c):&#x3D;P(w|d&#x3D;0,c)P(d&#x3D;0|c)&amp;&#x3D;P(w|d&#x3D;0,c)P(d&#x3D;0)\&amp;&#x3D;P(w|d&#x3D;0,c)\frac{k}{1+k}\end{aligned}$$<br>通过对 $d$ 求和，可以得到概率 $P(w|c)$<br>$$\begin{aligned}P(w|c)&#x3D;\sum_dP(d,w|c)&amp;&#x3D;P(d&#x3D;1,w|c)+P(d&#x3D;0,w|c)\&amp;&#x3D;P(w|d&#x3D;1,c)\frac{1}{1+k}+P(w|d&#x3D;0,c)\frac{k}{1+k}\end{aligned}$$</p>
-<p>噪声对比估计的目标函数不再是最大化对数似然，而是<br>$$\max\left{\mathbb{E}<em>{w\sim P(w|d&#x3D;1,c)}\left[\log P</em>\theta(d&#x3D;1|w,c)\right]+k\mathbb{E}<em>{w\sim P(d&#x3D;0|w,c)}\left[\log P</em>\theta(d&#x3D;0|w,c)\right]\right}$$<br>P(w|d&#x3D;1,c)}其实就是 正样本的分布P_d  P(w|d&#x3D;0,c)}噪声分布 P(w|d&#x3D;0,c)} P_n</p>
-<p>展开：<br>$$\begin{aligned}&amp;\mathbb{E}<em>{w\sim P(w|d&#x3D;1,c)}\left[\log P</em>\theta(d&#x3D;1|w,c)\right]+k\mathbb{E}<em>{w\sim P(w|d&#x3D;0,c)}\left[\log P</em>\theta(d&#x3D;0|w,c)\right]\<br>&amp;&#x3D;\mathbb{E}<em>{w\sim P(w|d&#x3D;1,c)}\left[\log\frac{P</em>\theta(w|d&#x3D;1,c)}{P_\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}\right]+k\mathbb{E}<em>{w\sim P(w|d&#x3D;0,c)}\left[\log\frac{kP(w|d&#x3D;0,c)}{P</em>\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}\right]\<br>&amp;&#x3D; \sum_wP(w|d&#x3D;1,c)\frac{kP(w|d&#x3D;0,c)}{P_\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)} \frac{\partial}{\partial\theta}\log P_\theta(w|d&#x3D;1,c)-\sum_wP(w|d&#x3D;0,c)\frac{kP_\theta(w|d&#x3D;1,c)}{P_\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}\frac{\partial}{\partial\theta}\log P_\theta(w|d&#x3D;1,c)<br>\end{aligned}$$<br>可以证明：<br>当 $k\rightarrow \infty$ 时，并把 $logZ_\theta(c)$ 当做常数 ，有<br>$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}<em>{w\sim P(w|d&#x3D;1,c)}\left[\log P</em>\theta(d&#x3D;1|w,c)\right]+k\mathbb{E}<em>{w\sim P(w|d&#x3D;0,c)}\left[\log P</em>\theta(d&#x3D;0|w,c)\right]\right]\&amp;&#x3D;\sum_w\left[P(w|d&#x3D;1,c)-P_\theta(w|d&#x3D;1,c)\right]\frac{\partial}{\partial\theta}s_\theta(w,c)\end{aligned}$$<br>可以发现：<br>在这个情况下，最大化噪声对比估计 等价与最大化似然</p>
-<p>我们可以用蒙特卡洛采样法去近似期望，即从数据分布中采样m个点，然后从噪声分布中采样n个点<br>$$&#x3D;\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d&#x3D;1,c)}{P_{\theta}(w,|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d&#x3D;0,c)}{P_{\theta}(w^-|d&#x3D;1,c)+kP(w^-|d&#x3D;0,c)}$$</p>
-<p>当m&#x3D;1,n&#x3D;k。那么为<br>$$\log\frac{P_\theta(w|d&#x3D;1,c)}{P_\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}+\sum_{w_-}\log\frac{kP(w|d&#x3D;0,c)}{P_\theta(w|d&#x3D;1,c)+kP(w|d&#x3D;0,c)}$$</p>
-<p>负采样是NCE的一种特殊情况，即让归一化项$Z_{\theta}$固定为常数1且令$kP(w|d&#x3D;0,c)&#x3D;1\to P(w|d&#x3D;0,c)&#x3D;\frac1k$,</p>
-<p>那么<br>$$\begin{aligned}&amp;\mathbb{E}<em>{w\sim P(w|d&#x3D;1,c)}\left[\log P</em>\theta(d&#x3D;1|w,c)\right]+k\mathbb{E}<em>{w\sim P(w|d&#x3D;0,c)}\left[\log P</em>\theta(d&#x3D;0|w,c)\right]\<br>&amp;&#x3D;\frac{1}{m}\sum_{w}\log\frac{\exp{s_\theta(w,c)}}{\exp{s_\theta(w,c)}+1}+\frac{k}{n}\sum_{w_-}\log\frac{1}{\exp{s_\theta(w,c)}+1}\<br>&amp;&#x3D;\frac{1}{m}\sum_{w}\log\frac{\exp{s_{\theta}(w,c)}&#x2F;\exp{s_{\theta}(w,c)}}{(\exp{s_{\theta}(w,c)}+1)&#x2F;\exp{s_{\theta}(w,c)}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp{s_{\theta}(w,c)}+1}\<br>&amp;&#x3D;\frac{1}{m}\sum_{w}\log\frac{1}{1+\exp{-s_{\theta}(w,c)}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp{s_{\theta}(w,c)}+1}\<br>&amp;&#x3D;\frac{1}{m}\sum_{w}\log\sigma(s_{\theta}(w,c))+\frac{k}{n}\sum_{w}\log\sigma(-s_{\theta}(w,c))<br>\end{aligned}$$</p>
-<p>当m&#x3D;1,n&#x3D;k,则<br>$$&#x3D;\log\sigma(s_\theta(w,c))+\sum\log\sigma(-s_\theta(w,c))$$</p>
-<p>loss<br>$$<br>-\log\sigma(s_\theta(w,c))-\sum\log\sigma(-s_\theta(w,c))<br>$$</p>
+<p>在噪声对比估计中，往往在数据分布 <span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+中采样1个正样本w，标签D=1。然后从噪声分布 <span
+class="math inline"><em>P</em>(<em>w</em>)</span>
+中采样k个负样本w，标签D=0</p>
+<p>也就是说，这k+1个样本构成的样本集<span
+class="math inline"><em>X</em></span>来自分布 <span
+class="math inline">$\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</span></p>
+<p>那么标签D=1，即样本来自真实分布 <span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>的后验概率为
+<span
+class="math display">$$P(D=1|w,c)=\frac{P(w|c)}{P(w|c)+kP(w)}$$</span></p>
+<p>由于我们希望用<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>拟合<span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，所以我们用<span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>代替方程中的<span
+class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，使后验概率成参数<span
+class="math inline"><em>θ</em></span>的函数： <span
+class="math display">$$P_\theta(D=1|w,c)=\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</span></p>
+<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集<span
+class="math inline"><em>X</em></span>上做优化，最大化对数似然<span
+class="math inline"><em>l</em><em>o</em><em>g</em><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>θ</em>)</span>的期望值
+<span class="math display">$$\begin{aligned}\max_\theta
+J^c(\theta)&amp;=\max_\theta \mathbb{E}_X[log P_\theta( D | w , θ)]
+\\&amp;=\max_\theta
+\left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
+\right)\end{aligned}$$</span></p>
+<p>对<span
+class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+求梯度 <span
+class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;=
+\frac{\partial}
+{\partial\theta}\left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
+\right)
+\\
+&amp;=\mathbb{E}_{P(w|c)}\left[\frac{kP(w)}{P_\theta(w|c)+kP(w)}\frac{\partial}
+{\partial\theta}\log
+P_\theta(w|c)\right]-k\mathbb{E}_{P(w)}\left[\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\frac{\partial}
+{\partial\theta}\log P_\theta(w|c)\right]\\
+&amp;=\sum_{w\in
+V}(P(w|c)-P_\theta(w|c))\frac{kP(w)}{P_\theta(w|c)+kP(w)}\frac{\partial}{\partial\theta}\log
+P_\theta(w|c)\end{aligned}$$</span></p>
+<p>当 <span
+class="math inline"><em>k</em> → ∞</span>，趋近于最大似然的梯度 <span
+class="math display">$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in
+v}(P(w|c)-P_\theta(w|c))\frac{\partial}{\partial\theta}\log
+P_\theta(w|c)$$</span></p>
+<p>实际训练过程中，给定一个在上下文<span
+class="math inline"><em>c</em></span>中观察到的词<span
+class="math inline"><em>w</em></span>，我们通过生成<span
+class="math inline"><em>k</em></span>个噪声样本<span
+class="math inline"><em>x</em><sub>1</sub>, …, <em>x</em><sub><em>k</em></sub></span>，<span
+class="math inline"><em>w</em></span>对梯度的贡献为 <span
+class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)=&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\\&amp;\begin{aligned}\sum_{i=1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log
+P_\theta(x_i|c)\right]\end{aligned}\end{aligned}$$</span></p>
+<p>注意 <span
+class="math inline">$\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$</span>
+的值一定在0到1之间，不像importance
+sampling的方法一样会变得方差很大，基于NCE的学习是很稳定的</p>
+<p>上文所述的 <span
+class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+用于学习对某一个上下文<span
+class="math inline"><em>c</em></span>的分布<span
+class="math inline"><em>p</em>(<em>w</em>|<em>c</em>)</span>，称为局部NCE目标函数</p>
+<p>通过使用经验上下文概率P(c)作为权重来组合每个上下文c的NCE目标，定义全局NCE目标函数
+<span
+class="math display"><em>J</em>(<em>θ</em>) = ∑<sub><em>c</em></sub><em>P</em>(<em>c</em>)<em>J</em>(<em>θ</em>)</span></p>
+<h3 id="dealing-with-normalizing-constants">1.3. Dealing with
+normalizing constants</h3>
+<p>如上文所述， <span
+class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+中的<span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>难以计算。NCE通过避免显式归一化和将<span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为
+<span class="math inline"><em>θ</em><sup>0</sup></span>
+非归一化分布<span
+class="math inline"><em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)</span>和一个参数<span
+class="math inline"><em>ϕ</em></span>用于表示<span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>的对数 <span
+class="math display"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>) = <em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)exp (<em>ϕ</em>)</span>
+那么 参数 <span
+class="math inline"><em>θ</em> = {<em>θ</em><sup>0</sup>, <em>ϕ</em>}</span>
+每对一个上下文 <span class="math inline"><em>c</em></span>
+都需要学习一个对应的 <span
+class="math inline"><em>ϕ</em></span>，这使得难以扩展到具有大规模上下文的情况。</p>
+<h4 id="negative-sampling-负采样">1.3.1. negative sampling 负采样</h4>
+<p>论文发现将<span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为1效果也很好，使用
+<span class="math inline"><em>Z</em><sub><em>θ</em></sub> = 1</span>
+时的<span
+class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+作为目标函数的方法为称为 负采样。</p>
+<p>比如用负采样改进的了word2vec <span
+class="math display">$$\begin{aligned}P(D=0\mid
+w,c)&amp;=\frac{1}{u_\theta(w,c)+1}\\P(D=1\mid
+w,c)&amp;=\frac{u_\theta(w,c)}{u_\theta(w,c)+1}.\end{aligned}$$</span>
+<span
+class="math inline"><em>u</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>) = exp {<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)}</span></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1410.8251">Notes on Noise Contrastive
+Estimation and Negative Sampling</a> <a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记]
+Word2Vec: 基于负采样的 Skip-gram 及其 SGD 训练 - 博客园</a></p>
+<h3 id="复杂度">1.4. 复杂度</h3>
+<p>假设<span class="math inline"><em>c</em></span>是上下文大小，<span
+class="math inline"><em>d</em></span>是单词特征向量维度，<span
+class="math inline"><em>V</em></span>是模型的词汇量大小。</p>
+<p>利用公式计算预测表示，NCE和ML学习都需要进行<span
+class="math inline"><em>c</em><em>d</em><sup>2</sup></span>操作。
+对于ML，从预测的表示中计算下一个单词的分布大约需要<span
+class="math inline"><em>V</em><em>d</em></span>个操作。
+对于NCE，在k个噪声样本下的分类为正样本的概率大约需要<span
+class="math inline"><em>k</em><em>d</em></span>次操作 由于
+k&lt;&lt;|V|，所以NCE大大提升了计算速度</p>
+<h3 id="总结">1.5. 总结</h3>
+<p>总结一下，NCE做了两件事 -
+更改了目标函数，任务从多分类问题到二分类问题 - 验证了 <span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+在基于NCE的训练中可以直接设为1</p>
+<h2 id="扩展阅读另一个博主的推导">2. 扩展阅读，另一个博主的推导</h2>
+<p>感觉还是原论文里写的更精炼</p>
+<p><a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：
+在给定 <span class="math inline"><em>c</em></span>
+的情况下，正负样本的概率分别为 <span
+class="math display">$$\begin{aligned}P(d=1,w|c)\:=P(w|d=1,c)P(d=1|c)&amp;=P(w|d=1,c)P(d=1)\\&amp;=P(w|d=1,c)\frac{1}{1+k}\end{aligned}$$</span>
+<span
+class="math display">$$\begin{aligned}P(d=0,w|c)\:=P(w|d=0,c)P(d=0|c)&amp;=P(w|d=0,c)P(d=0)\\&amp;=P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span>
+通过对 <span class="math inline"><em>d</em></span> 求和，可以得到概率
+<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span> <span
+class="math display">$$\begin{aligned}P(w|c)=\sum_dP(d,w|c)&amp;=P(d=1,w|c)+P(d=0,w|c)\\&amp;=P(w|d=1,c)\frac{1}{1+k}+P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span></p>
+<p>噪声对比估计的目标函数不再是最大化对数似然，而是 <span
+class="math display">max {𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>d</em> = 1, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 1|<em>w</em>, <em>c</em>)] + <em>k</em>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>d</em> = 0|<em>w</em>, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 0|<em>w</em>, <em>c</em>)]}</span>
+P(w|d=1,c)}其实就是 正样本的分布P_d P(w|d=0,c)}噪声分布 P(w|d=0,c)}
+P_n</p>
+<p>展开： <span
+class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
+P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
+&amp;=\mathbb{E}_{w\sim
+P(w|d=1,c)}\left[\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\right]+k\mathbb{E}_{w\sim
+P(w|d=0,c)}\left[\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\right]\\
+&amp;= \sum_wP(w|d=1,c)\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}
+\frac{\partial}{\partial\theta}\log
+P_\theta(w|d=1,c)-\sum_wP(w|d=0,c)\frac{kP_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\frac{\partial}{\partial\theta}\log
+P_\theta(w|d=1,c)
+\end{aligned}$$</span> 可以证明： 当 <span
+class="math inline"><em>k</em> → ∞</span> 时，并把 <span
+class="math inline"><em>l</em><em>o</em><em>g</em><em>Z</em><sub><em>θ</em></sub>(<em>c</em>)</span>
+当做常数 ，有 <span
+class="math display">$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}_{w\sim
+P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
+P(w|d=0,c)}\left[\log
+P_\theta(d=0|w,c)\right]\right]\\&amp;=\sum_w\left[P(w|d=1,c)-P_\theta(w|d=1,c)\right]\frac{\partial}{\partial\theta}s_\theta(w,c)\end{aligned}$$</span>
+可以发现： 在这个情况下，最大化噪声对比估计 等价与最大化似然</p>
+<p>我们可以用蒙特卡洛采样法去近似期望，即从数据分布中采样m个点，然后从噪声分布中采样n个点
+<span
+class="math display">$$=\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d=1,c)}{P_{\theta}(w,|d=1,c)+kP(w|d=0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d=0,c)}{P_{\theta}(w^-|d=1,c)+kP(w^-|d=0,c)}$$</span></p>
+<p>当m=1,n=k。那么为 <span
+class="math display">$$\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}+\sum_{w_-}\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}$$</span></p>
+<p>负采样是NCE的一种特殊情况，即让归一化项<span
+class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为常数1且令<span
+class="math inline">$kP(w|d=0,c)=1\to P(w|d=0,c)=\frac1k$</span>,</p>
+<p>那么 <span
+class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
+P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
+&amp;=\frac{1}{m}\sum_{w}\log\frac{\exp\{s_\theta(w,c)\}}{\exp\{s_\theta(w,c)\}+1}+\frac{k}{n}\sum_{w_-}\log\frac{1}{\exp\{s_\theta(w,c)\}+1}\\
+&amp;=\frac{1}{m}\sum_{w}\log\frac{\exp\{s_{\theta}(w,c)\}/\exp\{s_{\theta}(w,c)\}}{(\exp\{s_{\theta}(w,c)\}+1)/\exp\{s_{\theta}(w,c)\}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp\{s_{\theta}(w,c)\}+1}\\
+&amp;=\frac{1}{m}\sum_{w}\log\frac{1}{1+\exp\{-s_{\theta}(w,c)\}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp\{s_{\theta}(w,c)\}+1}\\
+&amp;=\frac{1}{m}\sum_{w}\log\sigma(s_{\theta}(w,c))+\frac{k}{n}\sum_{w}\log\sigma(-s_{\theta}(w,c))
+\end{aligned}$$</span></p>
+<p>当m=1,n=k,则 <span
+class="math display"> = log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) + ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
+<p>loss <span
+class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) − ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/" data-id="cmeqrckdk0007e4v10d9n2wlo" data-title="噪声对比估计-NCE" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/11/web/framework/category%20test/" rel="prev" title="category test">
+      <i class="fa fa-chevron-left"></i> category test
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/" rel="next" title="损失函数-InfoNCE">
+      损失函数-InfoNCE <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nce-noise-contrastive-estimation"><span class="nav-number">1.</span> <span class="nav-text">1. NCE: Noise Contrastive
+Estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ml-method"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. ML method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nce-method"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. NCE method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dealing-with-normalizing-constants"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. Dealing with
+normalizing constants</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#negative-sampling-%E8%B4%9F%E9%87%87%E6%A0%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1. negative sampling 负采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">1.5. 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%8D%9A%E4%B8%BB%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">2. 扩展阅读，另一个博主的推导</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          损失函数-InfoNCE
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2025/08/11/web/framework/category%20test/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">category test</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/framework/">framework</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/">3.对比学习</a></li></ul></li></ul>
-    </div>
-  </div>
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
 
 
   
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/08/25/%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/">公式测试</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/">损失函数-InfoNCE</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E5%99%AA%E5%A3%B0%E5%AF%B9%E6%AF%94%E4%BC%B0%E8%AE%A1-NCE/">噪声对比估计-NCE</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/11/web/framework/category%20test/">category test</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/11/web/framework/husky%20test/">husky test</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
   
-</aside>
-        
-      </div>
-      <footer id="footer">
+
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
       
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
     
 
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
 </html>
