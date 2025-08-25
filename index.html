@@ -154,6 +154,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/25/xxx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/08/25/xxx/" class="post-title-link" itemprop="url">xxx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-08-25 19:39:21 / Modified: 20:13:24" itemprop="dateCreated datePublished" datetime="2025-08-25T19:39:21+08:00">2025-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://raw.githubusercontent.com/Rich-Chaw/BlogAssets/main/image/20250825201242743.png" alt="20250825.png"> <img src="images/xxx/image-20250825201242740.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/25/hexo%E6%92%98%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/hexo%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -219,8 +278,7 @@ Node.js，右键选择“卸载”。</p></li>
 <li><p><strong>验证卸载是否成功</strong> 打开命令提示符，输入： where
 node 如果没有返回路径，说明已成功卸载。</p></li>
 </ul>
-<p>安装nvm 下载地址<a
-target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">Releases ·
+<p>安装nvm 下载地址<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">Releases ·
 coreybutler/nvm-windows</a>，这里我下载了1.1.12版本</p>
 <p>nvm后续升级
 下载新版本的安装包，安装时nvm路径和nodejs都和已有版本一致，安装完就升级到新版本了</p>
@@ -245,10 +303,8 @@ npm_mirror=https://npmmirror.com/mirrors/npm/</p>
 <p>核心功能 npx 的主要作用是直接运行本地或远程 npm
 包中的命令，而无需手动安装。
 自动查找项目中 <em>node_modules/.bin</em> 目录下的可执行文件。如果本地找不到对应的包，会临时从远程下载并执行，执行后自动删除。</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/HuangsTing/article/details/113857145">window下安装并使用nvm（含卸载node、卸载nvm、全局安装npm）-CSDN博客</a>
-<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/549089297">Hexo历险记之三本地安装Hexo
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/HuangsTing/article/details/113857145">window下安装并使用nvm（含卸载node、卸载nvm、全局安装npm）-CSDN博客</a>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/549089297">Hexo历险记之三本地安装Hexo
 - 知乎</a></p>
 <p>查看所有可安装版本 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm view hexo-cli versions</span><br></pre></td></tr></table></figure></p>
 <p>安装最新版hexo： 方式一：安装hexo-cli（建议） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
@@ -290,8 +346,7 @@ d前需要，以避免主页未同步问题。hexo g之前不用</p>
 <p>对应缩写 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo n == hexo new </span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo cl == hexo clean</span><br><span class="line">hexo s == hexo server</span><br></pre></td></tr></table></figure></p>
 <h2 id="部署到github主页">2. 部署到github主页</h2>
 <p>静态网站托管服务使用 <code>Github Pages</code> ，github的这个服务是免费的，因此很多个人博客都会使用这个服务，并且免去了各种意义上的麻烦，<del>包括穷的麻烦。</del> 以下是 <code>Github Pages</code> 的官方文档：
-<a
-target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages">Github
+<a target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages">Github
 Pages</a></p>
 <p>新建一个github仓库
 给仓库起个名称，注意！注意！注意！用户名必须用github账号的用户名</p>
@@ -329,9 +384,8 @@ PID（进程 ID），然后使用 <code>kill -9 &lt;PID&gt;</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 4000</span><br></pre></td></tr></table></figure>
 <p>![[Pasted image 20250801150434.png]]</p>
 <p>这里说明进程18508，占用了端口4000，终止进程 18508</p>
-<p>taskkill /pid <进程id> -f ![[Pasted image 20250801150449.png]]</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/details/127047943?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-127047943-blog-132337172.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">windows查看端口占用和结束端口进程_window-CSDN博客</a></p>
+<p>taskkill /pid <进程id> -f ![[Pasted image 20250801150449.png]]</进程id></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/details/127047943?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-127047943-blog-132337172.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">windows查看端口占用和结束端口进程_window-CSDN博客</a></p>
 <p>![[Pasted image 20250801161847.png]] 1. 安装 hexo-deployer-git
 插件</p>
 <p>要解决这个问题，需要安装 <em>hexo-deployer-git</em> 插件。</p>
@@ -339,8 +393,7 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/d
 bash，运行安装指令，这个安装指令没有-g，因此会安装在博客目录下
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</p>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【保姆级】利用Github搭建自己的个人博客，看完就会
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【保姆级】利用Github搭建自己的个人博客，看完就会
 - 知乎</a></p>
 
       
@@ -408,9 +461,9 @@ y &amp;= w_i*x_i +b\\
 &amp;= WX+b
 \end{aligned}
 $$</span></p>
-<p>这是 <em>行内公式</em>，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.985ex;" xmlns="http://www.w3.org/2000/svg" width="4.653ex" height="2.701ex" role="img" focusable="false" viewBox="0 -758.6 2056.8 1193.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-1-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="msub" transform="translate(671.8,446.1) scale(0.707)"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"></use></g><g data-mml-node="mn" transform="translate(605,-150) scale(0.707)"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"></use></g></g><g data-mml-node="mrow" transform="translate(220,-377.4) scale(0.707)"><g data-mml-node="msup"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"></use></g><g data-mml-node="mn" transform="translate(605,289) scale(0.707)"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"></use></g></g><g data-mml-node="mo" transform="translate(1008.6,0)"><use data-c="2212" xlink:href="#MJX-1-TEX-N-2212"></use></g><g data-mml-node="mn" transform="translate(1786.6,0)"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"></use></g></g><rect width="1816.8" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>例子</p>
+<p>这是 <em>行内公式</em>，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.985ex;" xmlns="http://www.w3.org/2000/svg" width="4.653ex" height="2.701ex" role="img" focusable="false" viewbox="0 -758.6 2056.8 1193.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/><path id="MJX-1-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path id="MJX-1-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="msub" transform="translate(671.8,446.1) scale(0.707)"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"/></g><g data-mml-node="mn" transform="translate(605,-150) scale(0.707)"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"/></g></g><g data-mml-node="mrow" transform="translate(220,-377.4) scale(0.707)"><g data-mml-node="msup"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"/></g><g data-mml-node="mn" transform="translate(605,289) scale(0.707)"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"/></g></g><g data-mml-node="mo" transform="translate(1008.6,0)"><use data-c="2212" xlink:href="#MJX-1-TEX-N-2212"/></g><g data-mml-node="mn" transform="translate(1786.6,0)"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"/></g></g><rect width="1816.8" height="60" x="120" y="220"/></g></g></g></svg></mjx-container>例子</p>
 <p>hexo-math渲染的 <strong>mathjax</strong>：</p>
-<mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.036ex;" xmlns="http://www.w3.org/2000/svg" width="14.392ex" height="5.204ex" role="img" focusable="false" viewBox="0 -1400 6361.3 2300" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-1-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-1-TEX-I-1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path><path id="MJX-1-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-1-TEX-N-2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path><path id="MJX-1-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-1-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-1-TEX-I-1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path id="MJX-1-TEX-I-1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path><path id="MJX-1-TEX-I-1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtable"><g data-mml-node="mtr" transform="translate(0,650)"><g data-mml-node="mtd"><g data-mml-node="mi"><use data-c="1D466" xlink:href="#MJX-1-TEX-I-1D466"></use></g></g><g data-mml-node="mtd" transform="translate(490,0)"><g data-mml-node="mi"></g><g data-mml-node="mo" transform="translate(277.8,0)"><use data-c="3D" xlink:href="#MJX-1-TEX-N-3D"></use></g><g data-mml-node="msub" transform="translate(1333.6,0)"><g data-mml-node="mi"><use data-c="1D464" xlink:href="#MJX-1-TEX-I-1D464"></use></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"></use></g></g><g data-mml-node="mo" transform="translate(2598.7,0)"><use data-c="2217" xlink:href="#MJX-1-TEX-N-2217"></use></g><g data-mml-node="msub" transform="translate(3321,0)"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"></use></g><g data-mml-node="mi" transform="translate(605,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"></use></g></g><g data-mml-node="mo" transform="translate(4442.1,0)"><use data-c="2B" xlink:href="#MJX-1-TEX-N-2B"></use></g><g data-mml-node="mi" transform="translate(5442.3,0)"><use data-c="1D44F" xlink:href="#MJX-1-TEX-I-1D44F"></use></g></g></g><g data-mml-node="mtr" transform="translate(0,-650)"><g data-mml-node="mtd" transform="translate(490,0)"></g><g data-mml-node="mtd" transform="translate(490,0)"><g data-mml-node="mi"></g><g data-mml-node="mo" transform="translate(277.8,0)"><use data-c="3D" xlink:href="#MJX-1-TEX-N-3D"></use></g><g data-mml-node="mi" transform="translate(1333.6,0)"><use data-c="1D44A" xlink:href="#MJX-1-TEX-I-1D44A"></use></g><g data-mml-node="mi" transform="translate(2381.6,0)"><use data-c="1D44B" xlink:href="#MJX-1-TEX-I-1D44B"></use></g><g data-mml-node="mo" transform="translate(3455.8,0)"><use data-c="2B" xlink:href="#MJX-1-TEX-N-2B"></use></g><g data-mml-node="mi" transform="translate(4456,0)"><use data-c="1D44F" xlink:href="#MJX-1-TEX-I-1D44F"></use></g></g></g></g></g></g></svg></mjx-container>
+<mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.036ex;" xmlns="http://www.w3.org/2000/svg" width="14.392ex" height="5.204ex" role="img" focusable="false" viewbox="0 -1400 6361.3 2300" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"/><path id="MJX-1-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/><path id="MJX-1-TEX-I-1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"/><path id="MJX-1-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/><path id="MJX-1-TEX-N-2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"/><path id="MJX-1-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/><path id="MJX-1-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"/><path id="MJX-1-TEX-I-1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/><path id="MJX-1-TEX-I-1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"/><path id="MJX-1-TEX-I-1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"/></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtable"><g data-mml-node="mtr" transform="translate(0,650)"><g data-mml-node="mtd"><g data-mml-node="mi"><use data-c="1D466" xlink:href="#MJX-1-TEX-I-1D466"/></g></g><g data-mml-node="mtd" transform="translate(490,0)"><g data-mml-node="mi"/><g data-mml-node="mo" transform="translate(277.8,0)"><use data-c="3D" xlink:href="#MJX-1-TEX-N-3D"/></g><g data-mml-node="msub" transform="translate(1333.6,0)"><g data-mml-node="mi"><use data-c="1D464" xlink:href="#MJX-1-TEX-I-1D464"/></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"/></g></g><g data-mml-node="mo" transform="translate(2598.7,0)"><use data-c="2217" xlink:href="#MJX-1-TEX-N-2217"/></g><g data-mml-node="msub" transform="translate(3321,0)"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-1-TEX-I-1D465"/></g><g data-mml-node="mi" transform="translate(605,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"/></g></g><g data-mml-node="mo" transform="translate(4442.1,0)"><use data-c="2B" xlink:href="#MJX-1-TEX-N-2B"/></g><g data-mml-node="mi" transform="translate(5442.3,0)"><use data-c="1D44F" xlink:href="#MJX-1-TEX-I-1D44F"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-650)"><g data-mml-node="mtd" transform="translate(490,0)"/><g data-mml-node="mtd" transform="translate(490,0)"><g data-mml-node="mi"/><g data-mml-node="mo" transform="translate(277.8,0)"><use data-c="3D" xlink:href="#MJX-1-TEX-N-3D"/></g><g data-mml-node="mi" transform="translate(1333.6,0)"><use data-c="1D44A" xlink:href="#MJX-1-TEX-I-1D44A"/></g><g data-mml-node="mi" transform="translate(2381.6,0)"><use data-c="1D44B" xlink:href="#MJX-1-TEX-I-1D44B"/></g><g data-mml-node="mo" transform="translate(3455.8,0)"><use data-c="2B" xlink:href="#MJX-1-TEX-N-2B"/></g><g data-mml-node="mi" transform="translate(4456,0)"><use data-c="1D44F" xlink:href="#MJX-1-TEX-I-1D44F"/></g></g></g></g></g></g></svg></mjx-container>
 
       
     </div>
@@ -482,11 +535,10 @@ $$</span></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="损失函数-InfoNCE/image-20250825100450172.png" /></p>
+          <p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png"></p>
 <p>机器学习领域，尤其是<strong>无监督学习和表示学习</strong>中，对比学习（Contrastive
 Learning）已经成为一种非常流行的方法。<strong>通过最大化与正样本的相似性，同时最小化与负样本的相似性</strong>，使得训练模型能区分“相关”和“不相关”的数据对，从而捕获数据的深层语义信息。</p>
-<p>其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： <span
-class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
+<p>其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： <span class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
 \frac{f_k(x_i, c_t)}{\sum_{x_j \in X} f_k(x_j, c_t)} \right]
 \tag{4}$$</span></p>
 <p>InfoNCE 全称是 Info Noise-Contrastive Estimation
@@ -495,13 +547,11 @@ Loss，基于噪声对比估计（Noise-Contrastive Estimation, NCE）。</p>
 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.03748">[1807.03748] Representation
 Learning with Contrastive Predictive Coding</a>
 应用：对比学习，大模型训练如 CLIP[Contrastive Language-Image
-Pretraining]所采用。 <a
-target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.00020">[2103.00020] Learning
+Pretraining]所采用。 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.00020">[2103.00020] Learning
 Transferable Visual Models From Natural Language Supervision</a></p>
 <h2 id="cpc">1. CPC</h2>
 <p>CPC简介:来着google DeepMind 2019 [CPC-Representation Learning with
-Contrastive Predictive Coding]：基于对比预测编码的表示学习 PPT：<a
-target="_blank" rel="noopener" href="https://www2.cs.arizona.edu/~pachecoj/courses/csc696h_spring24/lectures/thang_cpc.pdf">Representation
+Contrastive Predictive Coding]：基于对比预测编码的表示学习 PPT：<a target="_blank" rel="noopener" href="https://www2.cs.arizona.edu/~pachecoj/courses/csc696h_spring24/lectures/thang_cpc.pdf">Representation
 Learning with Contrastive Predictive Coding</a></p>
 <ol type="1">
 <li>CPC是一个unsupervised representation learning
@@ -517,162 +567,95 @@ Learning with Contrastive Predictive Coding</a></p>
 <p>CPC希望学习到的这个表示能预测未来。</p>
 <p>设当前的上下文为 <span class="math inline"><em>c</em></span>
 ，预测未来目标为 <span class="math inline"><em>x</em></span>，
-如果用生成模型来建模 <span
-class="math inline"><em>p</em>(<em>x</em>|<em>c</em></span>)（条件概率分布）
+如果用生成模型来建模 <span class="math inline"><em>p</em>(<em>x</em>|<em>c</em></span>)（条件概率分布）
 在高维数据中非常困难，因为它需要生成数据的每一个细节。而且单模态损失如均方误差和交叉熵并不是很有用。</p>
 <p>CPC的做法是：<strong>让 <span class="math inline"><em>c</em></span>
 和 <span class="math inline"><em>x</em></span>
 之间的表示保留尽可能多的互信息 (Mutual Information,
 MI)</strong>。这样的表示能编码高维输入信号不同部分之间的潜在共享信息（latent
 shared information），并且丢弃低维信息和局部噪声</p>
-<p><span class="math inline"><em>x</em></span> 和 <span
-class="math inline"><em>c</em></span> 的互信息定义为 <span
-class="math display">$$I(x;c)=\sum_{x,c}p(x,c)\log\frac{p(x|c)}{p(x)}
+<p><span class="math inline"><em>x</em></span> 和 <span class="math inline"><em>c</em></span> 的互信息定义为 <span class="math display">$$I(x;c)=\sum_{x,c}p(x,c)\log\frac{p(x|c)}{p(x)}
 \tag{1}$$</span> &gt; 互信息（Mutual
 Information）：指变量间的相关性，通常用I(X;Y)表示X和Y之间的互信息，表示引入Y后使X的不确定度减小的量，I(X;Y)越大可以说明两者关系越密切</p>
-<p><img src="损失函数-InfoNCE/image-20250825100546253.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100546253.png"></p>
 <p>在这个图里，raw
-data是最下面的<strong>语音信号</strong>，在这条语音信号上选取一些时间窗口（frames），每一个frame作为输入<span
-class="math inline"><em>x</em></span>，构成序列 <span
-class="math inline">{<em>x</em><sub><em>t</em></sub>}</span>，</p>
-<p>CPC用一个encoder <span
-class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>（比如AutoEncoder或者CNN），对每个
+data是最下面的<strong>语音信号</strong>，在这条语音信号上选取一些时间窗口（frames），每一个frame作为输入<span class="math inline"><em>x</em></span>，构成序列 <span class="math inline">{<em>x</em><sub><em>t</em></sub>}</span>，</p>
+<p>CPC用一个encoder <span class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>（比如AutoEncoder或者CNN），对每个
 <span class="math inline"><em>x</em><sub><em>t</em></sub></span>
-编码得到 latent vector <span
-class="math inline"><em>z</em><sub><em>t</em></sub> = <em>g</em><sub><em>e</em><em>n</em><em>c</em></sub>(<em>x</em><sub><em>t</em></sub>)</span>**
-，为了做预测，把序列<span
-class="math inline">{<em>z</em><sub><em>t</em></sub>}</span>放到一个可以做预测的，有回归性质的模型
-<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>
+编码得到 latent vector <span class="math inline"><em>z</em><sub><em>t</em></sub> = <em>g</em><sub><em>e</em><em>n</em><em>c</em></sub>(<em>x</em><sub><em>t</em></sub>)</span>**
+，为了做预测，把序列<span class="math inline">{<em>z</em><sub><em>t</em></sub>}</span>放到一个可以做预测的，有回归性质的模型
+<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>
 里（比如RNN），用 <span class="math inline"><em>t</em></span>
-及其之前的frames为输入 <span
-class="math inline">{<em>z</em><sub> ≤ <em>t</em></sub>}</span> ，得到
-<span
-class="math inline"><em>c</em><sub><em>t</em></sub> = <em>g</em><sub><em>a</em><em>r</em></sub>(<em>z</em><sub> ≤ <em>t</em></sub>)</span></p>
-<p>按上节所说，CPC的巧妙之处在于，它不直接建模 (<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>)，而是用一个评分函数
-<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-<strong>建模数据的条件分布与独立分布之间的密度比</strong>， <span
-class="math display">$$f_k(x_{t+k}, c_t) \propto
+及其之前的frames为输入 <span class="math inline">{<em>z</em><sub> ≤ <em>t</em></sub>}</span> ，得到
+<span class="math inline"><em>c</em><sub><em>t</em></sub> = <em>g</em><sub><em>a</em><em>r</em></sub>(<em>z</em><sub> ≤ <em>t</em></sub>)</span></p>
+<p>按上节所说，CPC的巧妙之处在于，它不直接建模 (<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>)，而是用一个评分函数
+<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<strong>建模数据的条件分布与独立分布之间的密度比</strong>， <span class="math display">$$f_k(x_{t+k}, c_t) \propto
 \frac{p(x_{t+k}|c_t)}{p(x_{t+k})} \tag{2}$$</span>
-右项的密度比来自互信息方程(1)，衡量的是<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>在给定
+右项的密度比来自互信息方程(1)，衡量的是<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>在给定
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-的条件下出现的可能性，相比它独立出现的可能性。如果 <span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
+的条件下出现的可能性，相比它独立出现的可能性。如果 <span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
 和 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
 高度相关，这个比值会很大；如果不相关，则接近 1 或更小。</p>
-<p>左项评分函数<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>计算为，
-<span
-class="math display"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) = <em>e</em><em>x</em><em>p</em>(<em>z</em><sub><em>t</em> + <em>k</em></sub><sup><em>T</em></sup><em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub>)</span>
-直接用线性矩阵 <span
-class="math inline"><em>W</em><sub>1</sub>, <em>W</em><sub>2</sub>, …, <em>W</em><sub><em>k</em></sub></span> 乘以 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 做预测（也可以用RNN做）得到
-<span
-class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub> = <em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub></span>，然后用向量内积来衡量
-<span
-class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub></span>
-和<span
-class="math inline"><em>z</em><sub><em>t</em> + <em>k</em></sub></span>的相似度。</p>
-<p>现在问题来到怎么训练使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>真的能估计密度比呢？
-**CPC设计了基于NCE的 InfoNCE Loss 如下： <span
-class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
+<p>左项评分函数<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>计算为，
+<span class="math display"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) = <em>e</em><em>x</em><em>p</em>(<em>z</em><sub><em>t</em> + <em>k</em></sub><sup><em>T</em></sup><em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub>)</span>
+直接用线性矩阵 <span class="math inline"><em>W</em><sub>1</sub>, <em>W</em><sub>2</sub>, …, <em>W</em><sub><em>k</em></sub></span> 乘以 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 做预测（也可以用RNN做）得到
+<span class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub> = <em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub></span>，然后用向量内积来衡量
+<span class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub></span>
+和<span class="math inline"><em>z</em><sub><em>t</em> + <em>k</em></sub></span>的相似度。</p>
+<p>现在问题来到怎么训练使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>真的能估计密度比呢？
+**CPC设计了基于NCE的 InfoNCE Loss 如下： <span class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
 \frac{f_k(x_{t+k}, c_t)}{\sum_{x_j \in X} f_k(x_j, c_t)} \right]
 \tag{4}$$</span></p>
 <ul>
-<li><span
-class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, …, <em>x</em><sub><em>N</em></sub>}</span>是一个样本集，包含
+<li><span class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, …, <em>x</em><sub><em>N</em></sub>}</span>是一个样本集，包含
 <ul>
-<li>1个正样本(positive sample)，与上下文 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 相关，采样自
-<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>，即正在用的那条语音信号K步之内的frame
-<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span></li>
+<li>1个正样本(positive sample)，与上下文 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 相关，采样自
+<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>，即正在用的那条语音信号K步之内的frame
+<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span></li>
 <li><span class="math inline"><em>N</em> − 1</span>
-个负样本(negative/noise sample），与上下文 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 无关，采样自
-<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>)</span>，即K步之外的frame或从其他条的语音信号里随机选择的一个frame
+个负样本(negative/noise sample），与上下文 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 无关，采样自
+<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>)</span>，即K步之外的frame或从其他条的语音信号里随机选择的一个frame
 <span class="math inline"><em>x</em><sub><em>j</em></sub></span></li>
 </ul></li>
-<li><span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-是一个评分函数，表示正样本对 <span
-class="math inline">(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-的匹配程度。<span
-class="math inline">∑<sub><em>x</em><sub><em>j</em></sub> ∈ <em>X</em></sub><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>j</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<li><span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+是一个评分函数，表示正样本对 <span class="math inline">(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+的匹配程度。<span class="math inline">∑<sub><em>x</em><sub><em>j</em></sub> ∈ <em>X</em></sub><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>j</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
 是正样本和所有负样本评分的总和。</li>
 </ul>
-<p><span
-class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>和<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>还有线性矩阵都进行联合训练以最小化InfoNCE
-loss， <strong><span
-class="math inline"><em>z</em><sub><em>t</em></sub></span>和<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>均可作为表示。当过去的信息有用时<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>  ，当不需要额外上下文信息时<span
-class="math inline"><em>z</em><sub><em>t</em></sub></span>。</strong></p>
-<p>直观来看，最小化InfoNCE loss将最大化正样本的评分 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<p><span class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>和<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>还有线性矩阵都进行联合训练以最小化InfoNCE
+loss， <strong><span class="math inline"><em>z</em><sub><em>t</em></sub></span>和<span class="math inline"><em>c</em><sub><em>t</em></sub></span>均可作为表示。当过去的信息有用时<span class="math inline"><em>c</em><sub><em>t</em></sub></span>  ，当不需要额外上下文信息时<span class="math inline"><em>z</em><sub><em>t</em></sub></span>。</strong></p>
+<p>直观来看，最小化InfoNCE loss将最大化正样本的评分 <span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
 相对于所有样本评分之和的比例，实际上是在<strong>训练模型识别“真正相关的样本对”</strong>，使
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-的预测和正样本 <span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
-的表示相似（接近）。但如何解释InfoNSE真的能使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比呢？</p>
+的预测和正样本 <span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
+的表示相似（接近）。但如何解释InfoNSE真的能使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比呢？</p>
 <h3 id="infonce背后的原理">1.1. InfoNCE背后的原理</h3>
-<p>如果能证明InfoNCE真的能使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比。那么最大化正样本的评分
-<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-就能最大化密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
+<p>如果能证明InfoNCE真的能使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比。那么最大化正样本的评分
+<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+就能最大化密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
 <p>证明： InfoNCE loss ： <span class="math display">$$\mathcal{L}_N =
 -\mathbb{E}_X \left[ \log \frac{f_k(x_i, c_t)}{\sum_{x_j \in X} f_k(x_j,
 c_t)} \right] \tag{4}$$</span></p>
-<p>InfoNCE loss在形式上是<strong>分类交叉熵</strong>， <span
-class="math inline">$\frac{f_k}{\sum_Xf_k}$</span>是 第<span
-class="math inline"><em>i</em></span>个样本<span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
-类别为正样本的预测概率，以下改写为 <span
-class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>。</p>
-<p>最小化InfoNCE loss等价于最大化预测 <span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
+<p>InfoNCE loss在形式上是<strong>分类交叉熵</strong>， <span class="math inline">$\frac{f_k}{\sum_Xf_k}$</span>是 第<span class="math inline"><em>i</em></span>个样本<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+类别为正样本的预测概率，以下改写为 <span class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>。</p>
+<p>最小化InfoNCE loss等价于最大化预测 <span class="math inline"><em>x</em><sub><em>i</em></sub></span>
 类别为正样本的概率</p>
-<p>回忆一下，我们是构造了一组随机样本<span
-class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, ⋯, <em>x</em><sub><em>N</em></sub>}</span>，里面有一个正样本<span
-class="math inline"><em>x</em><sub><em>i</em></sub></span> ，采样自<span
-class="math inline"><em>x</em><sub><em>i</em></sub> ∼ <em>p</em>(<em>x</em>|<em>c</em>)</span>。而其余的是负样本<span
-class="math inline"><em>x</em><sub><em>l</em> ≠ <em>i</em></sub></span>，采样自<span
-class="math inline"><em>p</em>(<em>x</em>)</span></p>
-<p><span
-class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>可以计算为
-<span
-class="math display">$$\begin{gathered}p(d=i|X,c_{t})=\frac{p(x_i|c_t)\prod_{l\neq
+<p>回忆一下，我们是构造了一组随机样本<span class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, ⋯, <em>x</em><sub><em>N</em></sub>}</span>，里面有一个正样本<span class="math inline"><em>x</em><sub><em>i</em></sub></span> ，采样自<span class="math inline"><em>x</em><sub><em>i</em></sub> ∼ <em>p</em>(<em>x</em>|<em>c</em>)</span>。而其余的是负样本<span class="math inline"><em>x</em><sub><em>l</em> ≠ <em>i</em></sub></span>，采样自<span class="math inline"><em>p</em>(<em>x</em>)</span></p>
+<p><span class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>可以计算为
+<span class="math display">$$\begin{gathered}p(d=i|X,c_{t})=\frac{p(x_i|c_t)\prod_{l\neq
 i}p(x_l)}{\sum_{j=1}^N [p(x_j|c_t)\prod_{l\neq
 j}p(x_l)]}\\=\frac{\frac{p(x_i|c_t)}{p(x_i)}}{\sum_{j=1}^N\frac{p(x_j|c_t)}{p(x_j)}}.\end{gathered}
 \tag{5}$$</span></p>
-<p>从上式可以证明，式(4)中<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-与密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>成正比，与负样本个数<span
-class="math inline"><em>N</em> − 1</span>的选择无关。</p>
-<p>也就是说 最小化InfoNCE loss等价于最大化预测 <span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
-类别为正样本的概率，等价最大化了密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
-<p>附录证明了最小化InfoNCE loss，不仅最大化密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>，也确实最大化
-<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>和
+<p>从上式可以证明，式(4)中<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+与密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>成正比，与负样本个数<span class="math inline"><em>N</em> − 1</span>的选择无关。</p>
+<p>也就是说 最小化InfoNCE loss等价于最大化预测 <span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+类别为正样本的概率，等价最大化了密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
+<p>附录证明了最小化InfoNCE loss，不仅最大化密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>，也确实最大化
+<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>和
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-之间的互信息的下限 <span
-class="math display"><em>I</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) ≥ log (<em>N</em>) − ℒ<sub>N</sub></span>
-<a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">InfoNCE：互信息噪声对比估计_哔哩哔哩_bilibili</a></p>
+之间的互信息的下限 <span class="math display"><em>I</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) ≥ log (<em>N</em>) − ℒ<sub>N</sub></span>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">InfoNCE：互信息噪声对比估计_哔哩哔哩_bilibili</a></p>
 <h2 id="experiment">2. Experiment</h2>
 <p><strong>强调：CPC学到的是表示，能预测的也是表示</strong></p>
 <p>CPC论文里做了语音信号，视觉、自然语言和强化学习的实验 ### 2.1. Audio
@@ -684,15 +667,11 @@ target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi
 简单来说，phoneme是一个抽象的概念，而phone是其具体的发音表现形式。</li>
 </ul>
 </blockquote>
-<p>预测语音信号未来1-20个frame的latent vector <span
-class="math inline"><em>z</em></span> 的平均准确率。 <img
-src="损失函数-InfoNCE/image-20250825100653204.png" /></p>
-<p>对<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>的输出<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>
+<p>预测语音信号未来1-20个frame的latent vector <span class="math inline"><em>z</em></span> 的平均准确率。 <img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100653204.png"></p>
+<p>对<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>的输出<span class="math inline"><em>c</em><sub><em>t</em></sub></span>
 (256维)，使用线性逻辑回归分类器分类。phone分类和speaker分类的准确性。</p>
 <p><strong>梅尔频率倒谱系数（MFCC）</strong> 是语音识别中广泛使用的一种特征提取方法。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100708369.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100708369.png"></p>
 <p>两项针对phone分类的CPC消融研究。 -
 改变了预测步数，这表明预测多步对于学习有用的表示是重要的 -
 固定预测步数为12， - mixed speaker，负样本包含不同speaker的语音信号 -
@@ -700,7 +679,7 @@ same speaker：与相同说话人实验(第二行)相反。 -
 在第三个和第四个实验中，排除当前语音信号，从(因此,
 X中只存在小批量数据中的其他例子)中提取负样本， -
 在最后一个实验中，只提取序列(因此所有样本均来自同一说话人)中的负样本。
-<img src="损失函数-InfoNCE/image-20250825100724807.png" /></p>
+<img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100724807.png"></p>
 <h3 id="natural-language">2.2. Natural Language</h3>
 <p>做的是transfer learning实验，严格遵循了Skip-thought[ 26
 ]的步骤。首先在BookCorpus数据集[42]上学习无监督模型，在一组新数据集上做句子（sentence）分类任务。为了处理在训练过程中没有看到的单词，采用与Skip-thought相同的方法进行词扩展，即在word2vec和模型学习到的词嵌入之间构建一个线性映射。</p>
@@ -711,20 +690,19 @@ X中只存在小批量数据中的其他例子)中提取负样本， -
 Skip-thought[26]在Word2Vec的基础上使用LSTM做单词预测，并使用最大似然对观测序列进行预测。Skip-thought
 LM 是加了Layer
 Norm。就是上文说的用生成模型来做预测，相对于CPC来说更难训练得多。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100739168.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100739168.png"></p>
 <h3 id="vision">2.3. vision</h3>
 <p>训练过程如下：从一幅256 × 256的图像中提取一个由64 × 64 的patch组成的7
 × 7网格，重叠32个像素。</p>
 <p>然后通过ResNet-v2-101编码器对每个patch进行编码。使用类似 pixelCNN
 的自回归模型将其转化成一个序列类型，用前几个 patch 作为输入，预测之后的
-patch。 <img src="损失函数-InfoNCE/image-20250825100749409.png" /></p>
+patch。 <img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100749409.png"></p>
 <p>ImageNet top-1非监督分类结果
 计算机视觉中，常对跟踪到的视频块使用三元组损失（Triplet
 loss），使得来自同一对象在不同时间步的块比随机块更相似。[11、29]提出预测图像中块的相对位置，在[10]中颜色值是从灰度图像中预测的。</p>
 <p>==啥是三元组损失== [FaceNet：A Unified Embedding for Face
-Recognition],参阅 <a
-target="_blank" rel="noopener" href="https://blog.csdn.net/zenglaoshi/article/details/106928204">深度学习之三元组损失原理与选取策略_三元组损失函数效果特别差-CSDN博客</a></p>
-<p><img src="损失函数-InfoNCE/image-20250825100802365.png" /></p>
+Recognition],参阅 <a target="_blank" rel="noopener" href="https://blog.csdn.net/zenglaoshi/article/details/106928204">深度学习之三元组损失原理与选取策略_三元组损失函数效果特别差-CSDN博客</a></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100802365.png"></p>
 <h3 id="reinforcement-learning">2.4. Reinforcement Learning</h3>
 <p>在DeepMind Lab
 [51]的3D环境中评估了所提出的无监督学习方法在五种强化学习中的表现：room _
@@ -733,14 +711,11 @@ watermaze，explore _ goal _ location _ small，searchvoid _ arena _
 以批量A2C [52]
 agent为基本模型，并添加CPC作为辅助损失，使学习到的表征编码了关于未来观测的分布。不使用重放replay
 buffer，因此预测结果必须适应策略的变化行为。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100815646.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100815646.png"></p>
 <p>黑色：批量A2C基线，红色：辅助对比丢失</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146709102?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-146709102-blog-134539003.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">深入解析
-InfoNCE Loss：对比学习的基石-CSDN博客</a> <a
-target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146710000?spm=1001.2014.3001.5501">什么是互信息（Mutual
-Information, MI）？CSDN博客</a> <a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129076690">理解Contrastive Predictive
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146709102?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-146709102-blog-134539003.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">深入解析
+InfoNCE Loss：对比学习的基石-CSDN博客</a> <a target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146710000?spm=1001.2014.3001.5501">什么是互信息（Mutual
+Information, MI）？CSDN博客</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129076690">理解Contrastive Predictive
 Coding和NCE Loss - 知乎</a></p>
 
       
@@ -835,35 +810,23 @@ J^c &amp;= x\\
 &amp;= y \\
 \end{aligned}
 $$</span></p>
-<p>最早提出NCE思想的论文 <a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive
-Estimation of Unnormalized Statistical Models-2010</a> <a
-target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive
+<p>最早提出NCE思想的论文 <a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive
+Estimation of Unnormalized Statistical Models-2010</a> <a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive
 Estimation of Unnormalized Statistical Models, with Applications to
 Natural Image Statistics-2012</a>
-给出了具体的NCE算法，本文主要参考来源于此 <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for
+给出了具体的NCE算法，本文主要参考来源于此 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for
 training neural probabilistic language models-2012</a></p>
-<p>回顾一下分布的知识： 设真实数据概率分布的概率密度函数为 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>
-，以下简称分布 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>。机器学习的主要目标是
-用一个参数为 <span class="math inline"><em>θ</em></span> 的分布 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span> 估计 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>，<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>称为预测概率分布</p>
+<p>回顾一下分布的知识： 设真实数据概率分布的概率密度函数为 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>
+，以下简称分布 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>。机器学习的主要目标是
+用一个参数为 <span class="math inline"><em>θ</em></span> 的分布 <span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span> 估计 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>，<span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>称为预测概率分布</p>
 <blockquote>
-<p>如果能知道<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>的形式，比如是正态分布或指数分布，那么可以直接学习
+<p>如果能知道<span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>的形式，比如是正态分布或指数分布，那么可以直接学习
 <span class="math inline"><em>θ</em></span> 的值。
 但大部分情况下我们并不知道具体形式，所以是对每个给定数据的估计概率值，也就是直接学习概率分布。</p>
 </blockquote>
-<p>概率分布要满足积分为1，即 <span
-class="math inline">∫<em>P</em>(<em>x</em>)<em>d</em><em>x</em> = 1</span></p>
-<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件 <span
-class="math display">$$P_\theta(\cdot)=\frac{\hat{P}_\theta(\cdot)}{Z_\theta}$$</span>
-其中分子是非归一化的概率分布，分母 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+<p>概率分布要满足积分为1，即 <span class="math inline">∫<em>P</em>(<em>x</em>)<em>d</em><em>x</em> = 1</span></p>
+<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件 <span class="math display">$$P_\theta(\cdot)=\frac{\hat{P}_\theta(\cdot)}{Z_\theta}$$</span>
+其中分子是非归一化的概率分布，分母 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 是配分函数（Partition Function）也称为归一化常数 （Normalized Constant）
 或 Marginalized Evidence</p>
 <p>用神经网络来估计为例 logits 层的输出 是非归一化的概率分布
@@ -872,44 +835,23 @@ class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 Estimation</h2>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm
 for training neural probabilistic language models</a> NCE
-是一个机器学习的方法，不涉及神经网络 - 学习一个参数来表示 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span> -
+是一个机器学习的方法，不涉及神经网络 - 学习一个参数来表示 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span> -
 学习一个能区分 从真实数据分布和噪声分布采样数据的模型的模型</p>
-<p>假设我们的数据是文本，任务是根据给定的上下文context <span
-class="math inline"><em>c</em></span>，预测目标target为单词 <span
-class="math inline"><em>w</em></span> ，希望学习到一个参数为<span
-class="math inline"><em>θ</em></span>（用<span
-class="math inline"><em>θ</em></span>参数化）的预测分布来估计/建模真实分布：
-<span
-class="math display"><em>P</em>(<em>w</em>|<em>c</em>) ≈ <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-让我们假设预测分布 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub></span>
-服从某一个指数族分布，任务是学习该分布的参数<span
-class="math inline"><em>θ</em></span> 值 <span
-class="math display">$$P_\theta(w|c)=\frac{\exp\{s_\theta(w,c)\}}{\sum_{w\in
-V}\exp\{s_\theta(w,c)\}}=\frac{u_\theta(w,c)}{Z_\theta}$$</span> <span
-class="math inline"><em>V</em></span>为词汇表，<span
-class="math inline"><em>S</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>是参数为
-<span class="math inline"><em>θ</em></span> 的评分函数，它量化了词<span
-class="math inline"><em>w</em></span>与上下文<span
-class="math inline"><em>c</em></span>的相容性，一般定义为向量点积</p>
+<p>假设我们的数据是文本，任务是根据给定的上下文context <span class="math inline"><em>c</em></span>，预测目标target为单词 <span class="math inline"><em>w</em></span> ，希望学习到一个参数为<span class="math inline"><em>θ</em></span>（用<span class="math inline"><em>θ</em></span>参数化）的预测分布来估计/建模真实分布：
+<span class="math display"><em>P</em>(<em>w</em>|<em>c</em>) ≈ <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+让我们假设预测分布 <span class="math inline"><em>P</em><sub><em>θ</em></sub></span>
+服从某一个指数族分布，任务是学习该分布的参数<span class="math inline"><em>θ</em></span> 值 <span class="math display">$$P_\theta(w|c)=\frac{\exp\{s_\theta(w,c)\}}{\sum_{w\in
+V}\exp\{s_\theta(w,c)\}}=\frac{u_\theta(w,c)}{Z_\theta}$$</span> <span class="math inline"><em>V</em></span>为词汇表，<span class="math inline"><em>S</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>是参数为
+<span class="math inline"><em>θ</em></span> 的评分函数，它量化了词<span class="math inline"><em>w</em></span>与上下文<span class="math inline"><em>c</em></span>的相容性，一般定义为向量点积</p>
 <h3 id="ml-method">1.1. ML method</h3>
 <p>在机器学习（ML）方法中，是通过最大似然估计（Maximum likelihood
-estimation,MLE）(假设所有样本之间相互独立)来优化参数 <span
-class="math inline"><em>θ</em></span>，目标函数为最大化对数似然<span
-class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望：</p>
-<p><span
-class="math display">max<sub><em>θ</em></sub><em>L</em><sup><em>c</em></sup>(<em>θ</em>) = max<sub><em>θ</em></sub>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)]</span>
-这个期望展开为 <span
-class="math display">𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = ∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
-<p>对应的损失函数为 负对数似然<span
-class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望
-<span
-class="math display">ℒ<sub><em>M</em><em>L</em><em>E</em></sub> = −<em>L</em><sup><em>c</em></sup>(<em>θ</em>) = −𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = −∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-可以看到，这个其实就是类别数为 <span
-class="math inline">|<em>V</em>|</span> 的多分类交叉熵，</p>
-<p>梯度为 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\frac{\partial}{\partial\theta}
+estimation,MLE）(假设所有样本之间相互独立)来优化参数 <span class="math inline"><em>θ</em></span>，目标函数为最大化对数似然<span class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望：</p>
+<p><span class="math display">max<sub><em>θ</em></sub><em>L</em><sup><em>c</em></sup>(<em>θ</em>) = max<sub><em>θ</em></sub>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)]</span>
+这个期望展开为 <span class="math display">𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = ∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>对应的损失函数为 负对数似然<span class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望
+<span class="math display">ℒ<sub><em>M</em><em>L</em><em>E</em></sub> = −<em>L</em><sup><em>c</em></sup>(<em>θ</em>) = −𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = −∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+可以看到，这个其实就是类别数为 <span class="math inline">|<em>V</em>|</span> 的多分类交叉熵，</p>
+<p>梯度为 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\frac{\partial}{\partial\theta}
 \mathbb{E}_{w\sim P(w|c)}\left[\log
 P_{\theta}(w|c)\right]\\&amp;=\frac{\partial}{\partial\theta}\mathbb{E}_{w\sim
 P(w|c)}\left[\log\frac{\exp\{s_\theta(w,c)\}}{Z_\theta}\right]\\
@@ -918,13 +860,8 @@ P(w|c)}s_\theta(w,c) - \frac{\partial}{\partial\theta} logZ_\theta\\
 &amp;=\sum_{w\in
 V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)
 \end{aligned}$$</span></p>
-<p>实际计算中，给定一个在上下文 <span
-class="math inline"><em>c</em></span> 中观察到的词 <span
-class="math inline"><em>w</em></span>，就对<span
-class="math inline"><em>L</em><sup><em>c</em></sup>(<em>θ</em>)</span>求一次梯度，<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-只对观察到的词 <span class="math inline"><em>w</em></span>，为1： <span
-class="math display">$$
+<p>实际计算中，给定一个在上下文 <span class="math inline"><em>c</em></span> 中观察到的词 <span class="math inline"><em>w</em></span>，就对<span class="math inline"><em>L</em><sup><em>c</em></sup>(<em>θ</em>)</span>求一次梯度，<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+只对观察到的词 <span class="math inline"><em>w</em></span>，为1： <span class="math display">$$
 \begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\sum_{w\in
 V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)\\
 &amp;=\frac{\partial}{\partial\theta}s_\theta(w,c)-\sum_{w\in
@@ -932,66 +869,41 @@ V}\frac{\exp s_\theta(w,c)}{\sum_{w\in
 V}\exp\{s_\theta(w,c)\}})\frac{\partial}{\partial\theta}s_\theta(w,c)
 \end{aligned}
 $$</span></p>
-<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的<span
-class="math inline"><em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>来求
-<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的<span class="math inline"><em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>来求
+<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
 中的<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span></p>
-<p>论文里提到了Importance sampling 来解决 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+<p>论文里提到了Importance sampling 来解决 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 计算复杂度高的问题，但是存在一些缺点。</p>
 <h3 id="nce-method">1.2. NCE method</h3>
 <p>噪声对比估计（Noise-Contrastive
 Estimation，NCE）:一种参数学习方法</p>
 <p>不是通过最大似然估计直接求参数，而是通过对比来求参数，任务是学习一个能区分从真实数据分布和噪声分布采样数据的模型，从而学习到
-<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
-<p>这个模型其实就是一个二元分类器 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
-，来估计<span
-class="math inline"><em>P</em>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>这个模型其实就是一个二元分类器 <span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+，来估计<span class="math inline"><em>P</em>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
 ，标签D=1或0分别表示 <span class="math inline"><em>w</em></span>
-是来自真实数据分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-（论文中称为 <span
-class="math inline"><em>P</em><sub><em>d</em></sub><sup><em>c</em></sup></span>
+是来自真实数据分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+（论文中称为 <span class="math inline"><em>P</em><sub><em>d</em></sub><sup><em>c</em></sup></span>
 ），还是噪声分布 <span class="math inline"><em>P</em>(<em>w</em>)</span>
-（论文中称为 <span
-class="math inline"><em>P</em><sub><em>n</em></sub></span> ）</p>
+（论文中称为 <span class="math inline"><em>P</em><sub><em>n</em></sub></span> ）</p>
 <blockquote>
 <p>二元分类器可以通过逻辑回归来进行学习。</p>
 </blockquote>
-<p>在噪声对比估计中，往往在数据分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-中采样1个正样本w，标签D=1。然后从噪声分布 <span
-class="math inline"><em>P</em>(<em>w</em>)</span>
+<p>在噪声对比估计中，往往在数据分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+中采样1个正样本w，标签D=1。然后从噪声分布 <span class="math inline"><em>P</em>(<em>w</em>)</span>
 中采样k个负样本w，标签D=0</p>
-<p>也就是说，这k+1个样本构成的样本集<span
-class="math inline"><em>X</em></span>来自分布 <span
-class="math inline">$\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</span></p>
-<p>那么标签D=1，即样本来自真实分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>的后验概率为
-<span
-class="math display">$$P(D=1|w,c)=\frac{P(w|c)}{P(w|c)+kP(w)}$$</span></p>
-<p>由于我们希望用<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>拟合<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，所以我们用<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>代替方程中的<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，使后验概率成参数<span
-class="math inline"><em>θ</em></span>的函数： <span
-class="math display">$$P_\theta(D=1|w,c)=\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</span></p>
-<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集<span
-class="math inline"><em>X</em></span>上做优化，最大化对数似然<span
-class="math inline"><em>l</em><em>o</em><em>g</em><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>θ</em>)</span>的期望值
+<p>也就是说，这k+1个样本构成的样本集<span class="math inline"><em>X</em></span>来自分布 <span class="math inline">$\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</span></p>
+<p>那么标签D=1，即样本来自真实分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>的后验概率为
+<span class="math display">$$P(D=1|w,c)=\frac{P(w|c)}{P(w|c)+kP(w)}$$</span></p>
+<p>由于我们希望用<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>拟合<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，所以我们用<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>代替方程中的<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，使后验概率成参数<span class="math inline"><em>θ</em></span>的函数： <span class="math display">$$P_\theta(D=1|w,c)=\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</span></p>
+<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集<span class="math inline"><em>X</em></span>上做优化，最大化对数似然<span class="math inline"><em>l</em><em>o</em><em>g</em><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>θ</em>)</span>的期望值
 <span class="math display">$$\begin{aligned}\max_\theta
 J^c(\theta)&amp;=\max_\theta \mathbb{E}_X[log P_\theta( D | w , θ)]
 \\&amp;=\max_\theta
 \left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
 \right)\end{aligned}$$</span></p>
-<p>对<span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
-求梯度 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;=
+<p>对<span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+求梯度 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;=
 \frac{\partial}
 {\partial\theta}\left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
 \right)
@@ -1003,100 +915,61 @@ P_\theta(w|c)\right]-k\mathbb{E}_{P(w)}\left[\frac{P_\theta(w|c)}{P_\theta(w|c)+
 &amp;=\sum_{w\in
 V}(P(w|c)-P_\theta(w|c))\frac{kP(w)}{P_\theta(w|c)+kP(w)}\frac{\partial}{\partial\theta}\log
 P_\theta(w|c)\end{aligned}$$</span></p>
-<p>当 <span
-class="math inline"><em>k</em> → ∞</span>，趋近于最大似然的梯度 <span
-class="math display">$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in
+<p>当 <span class="math inline"><em>k</em> → ∞</span>，趋近于最大似然的梯度 <span class="math display">$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in
 v}(P(w|c)-P_\theta(w|c))\frac{\partial}{\partial\theta}\log
 P_\theta(w|c)$$</span></p>
-<p>实际训练过程中，给定一个在上下文<span
-class="math inline"><em>c</em></span>中观察到的词<span
-class="math inline"><em>w</em></span>，我们通过生成<span
-class="math inline"><em>k</em></span>个噪声样本<span
-class="math inline"><em>x</em><sub>1</sub>, …, <em>x</em><sub><em>k</em></sub></span>，<span
-class="math inline"><em>w</em></span>对梯度的贡献为 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)=&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\\&amp;\begin{aligned}\sum_{i=1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log
+<p>实际训练过程中，给定一个在上下文<span class="math inline"><em>c</em></span>中观察到的词<span class="math inline"><em>w</em></span>，我们通过生成<span class="math inline"><em>k</em></span>个噪声样本<span class="math inline"><em>x</em><sub>1</sub>, …, <em>x</em><sub><em>k</em></sub></span>，<span class="math inline"><em>w</em></span>对梯度的贡献为 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)=&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\\&amp;\begin{aligned}\sum_{i=1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log
 P_\theta(x_i|c)\right]\end{aligned}\end{aligned}$$</span></p>
-<p>注意 <span
-class="math inline">$\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$</span>
+<p>注意 <span class="math inline">$\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$</span>
 的值一定在0到1之间，不像importance
 sampling的方法一样会变得方差很大，基于NCE的学习是很稳定的</p>
-<p>上文所述的 <span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
-用于学习对某一个上下文<span
-class="math inline"><em>c</em></span>的分布<span
-class="math inline"><em>p</em>(<em>w</em>|<em>c</em>)</span>，称为局部NCE目标函数</p>
+<p>上文所述的 <span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+用于学习对某一个上下文<span class="math inline"><em>c</em></span>的分布<span class="math inline"><em>p</em>(<em>w</em>|<em>c</em>)</span>，称为局部NCE目标函数</p>
 <p>通过使用经验上下文概率P(c)作为权重来组合每个上下文c的NCE目标，定义全局NCE目标函数
-<span
-class="math display"><em>J</em>(<em>θ</em>) = ∑<sub><em>c</em></sub><em>P</em>(<em>c</em>)<em>J</em>(<em>θ</em>)</span></p>
+<span class="math display"><em>J</em>(<em>θ</em>) = ∑<sub><em>c</em></sub><em>P</em>(<em>c</em>)<em>J</em>(<em>θ</em>)</span></p>
 <h3 id="dealing-with-normalizing-constants">1.3. Dealing with
 normalizing constants</h3>
-<p>如上文所述， <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-中的<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>难以计算。NCE通过避免显式归一化和将<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为
+<p>如上文所述， <span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+中的<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>难以计算。NCE通过避免显式归一化和将<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为
 <span class="math inline"><em>θ</em><sup>0</sup></span>
-非归一化分布<span
-class="math inline"><em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)</span>和一个参数<span
-class="math inline"><em>ϕ</em></span>用于表示<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>的对数 <span
-class="math display"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>) = <em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)exp (<em>ϕ</em>)</span>
-那么 参数 <span
-class="math inline"><em>θ</em> = {<em>θ</em><sup>0</sup>, <em>ϕ</em>}</span>
+非归一化分布<span class="math inline"><em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)</span>和一个参数<span class="math inline"><em>ϕ</em></span>用于表示<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>的对数 <span class="math display"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>) = <em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)exp (<em>ϕ</em>)</span>
+那么 参数 <span class="math inline"><em>θ</em> = {<em>θ</em><sup>0</sup>, <em>ϕ</em>}</span>
 每对一个上下文 <span class="math inline"><em>c</em></span>
-都需要学习一个对应的 <span
-class="math inline"><em>ϕ</em></span>，这使得难以扩展到具有大规模上下文的情况。</p>
+都需要学习一个对应的 <span class="math inline"><em>ϕ</em></span>，这使得难以扩展到具有大规模上下文的情况。</p>
 <h4 id="negative-sampling-负采样">1.3.1. negative sampling 负采样</h4>
-<p>论文发现将<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为1效果也很好，使用
+<p>论文发现将<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为1效果也很好，使用
 <span class="math inline"><em>Z</em><sub><em>θ</em></sub> = 1</span>
-时的<span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+时的<span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
 作为目标函数的方法为称为 负采样。</p>
-<p>比如用负采样改进的了word2vec <span
-class="math display">$$\begin{aligned}P(D=0\mid
+<p>比如用负采样改进的了word2vec <span class="math display">$$\begin{aligned}P(D=0\mid
 w,c)&amp;=\frac{1}{u_\theta(w,c)+1}\\P(D=1\mid
 w,c)&amp;=\frac{u_\theta(w,c)}{u_\theta(w,c)+1}.\end{aligned}$$</span>
-<span
-class="math inline"><em>u</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>) = exp {<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)}</span></p>
+<span class="math inline"><em>u</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>) = exp {<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)}</span></p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1410.8251">Notes on Noise Contrastive
-Estimation and Negative Sampling</a> <a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记]
+Estimation and Negative Sampling</a> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记]
 Word2Vec: 基于负采样的 Skip-gram 及其 SGD 训练 - 博客园</a></p>
 <h3 id="复杂度">1.4. 复杂度</h3>
-<p>假设<span class="math inline"><em>c</em></span>是上下文大小，<span
-class="math inline"><em>d</em></span>是单词特征向量维度，<span
-class="math inline"><em>V</em></span>是模型的词汇量大小。</p>
-<p>利用公式计算预测表示，NCE和ML学习都需要进行<span
-class="math inline"><em>c</em><em>d</em><sup>2</sup></span>操作。
-对于ML，从预测的表示中计算下一个单词的分布大约需要<span
-class="math inline"><em>V</em><em>d</em></span>个操作。
-对于NCE，在k个噪声样本下的分类为正样本的概率大约需要<span
-class="math inline"><em>k</em><em>d</em></span>次操作 由于
+<p>假设<span class="math inline"><em>c</em></span>是上下文大小，<span class="math inline"><em>d</em></span>是单词特征向量维度，<span class="math inline"><em>V</em></span>是模型的词汇量大小。</p>
+<p>利用公式计算预测表示，NCE和ML学习都需要进行<span class="math inline"><em>c</em><em>d</em><sup>2</sup></span>操作。
+对于ML，从预测的表示中计算下一个单词的分布大约需要<span class="math inline"><em>V</em><em>d</em></span>个操作。
+对于NCE，在k个噪声样本下的分类为正样本的概率大约需要<span class="math inline"><em>k</em><em>d</em></span>次操作 由于
 k&lt;&lt;|V|，所以NCE大大提升了计算速度</p>
 <h3 id="总结">1.5. 总结</h3>
 <p>总结一下，NCE做了两件事 -
-更改了目标函数，任务从多分类问题到二分类问题 - 验证了 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+更改了目标函数，任务从多分类问题到二分类问题 - 验证了 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 在基于NCE的训练中可以直接设为1</p>
 <h2 id="扩展阅读另一个博主的推导">2. 扩展阅读，另一个博主的推导</h2>
 <p>感觉还是原论文里写的更精炼</p>
-<p><a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：
 在给定 <span class="math inline"><em>c</em></span>
-的情况下，正负样本的概率分别为 <span
-class="math display">$$\begin{aligned}P(d=1,w|c)\:=P(w|d=1,c)P(d=1|c)&amp;=P(w|d=1,c)P(d=1)\\&amp;=P(w|d=1,c)\frac{1}{1+k}\end{aligned}$$</span>
-<span
-class="math display">$$\begin{aligned}P(d=0,w|c)\:=P(w|d=0,c)P(d=0|c)&amp;=P(w|d=0,c)P(d=0)\\&amp;=P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span>
+的情况下，正负样本的概率分别为 <span class="math display">$$\begin{aligned}P(d=1,w|c)\:=P(w|d=1,c)P(d=1|c)&amp;=P(w|d=1,c)P(d=1)\\&amp;=P(w|d=1,c)\frac{1}{1+k}\end{aligned}$$</span>
+<span class="math display">$$\begin{aligned}P(d=0,w|c)\:=P(w|d=0,c)P(d=0|c)&amp;=P(w|d=0,c)P(d=0)\\&amp;=P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span>
 通过对 <span class="math inline"><em>d</em></span> 求和，可以得到概率
-<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span> <span
-class="math display">$$\begin{aligned}P(w|c)=\sum_dP(d,w|c)&amp;=P(d=1,w|c)+P(d=0,w|c)\\&amp;=P(w|d=1,c)\frac{1}{1+k}+P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span></p>
-<p>噪声对比估计的目标函数不再是最大化对数似然，而是 <span
-class="math display">max {𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>d</em> = 1, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 1|<em>w</em>, <em>c</em>)] + <em>k</em>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>d</em> = 0|<em>w</em>, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 0|<em>w</em>, <em>c</em>)]}</span>
+<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span> <span class="math display">$$\begin{aligned}P(w|c)=\sum_dP(d,w|c)&amp;=P(d=1,w|c)+P(d=0,w|c)\\&amp;=P(w|d=1,c)\frac{1}{1+k}+P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span></p>
+<p>噪声对比估计的目标函数不再是最大化对数似然，而是 <span class="math display">max {𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>d</em> = 1, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 1|<em>w</em>, <em>c</em>)] + <em>k</em>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>d</em> = 0|<em>w</em>, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 0|<em>w</em>, <em>c</em>)]}</span>
 P(w|d=1,c)}其实就是 正样本的分布P_d P(w|d=0,c)}噪声分布 P(w|d=0,c)}
 P_n</p>
-<p>展开： <span
-class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+<p>展开： <span class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\mathbb{E}_{w\sim
@@ -1106,25 +979,17 @@ P(w|d=0,c)}\left[\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\right]\\
 \frac{\partial}{\partial\theta}\log
 P_\theta(w|d=1,c)-\sum_wP(w|d=0,c)\frac{kP_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\frac{\partial}{\partial\theta}\log
 P_\theta(w|d=1,c)
-\end{aligned}$$</span> 可以证明： 当 <span
-class="math inline"><em>k</em> → ∞</span> 时，并把 <span
-class="math inline"><em>l</em><em>o</em><em>g</em><em>Z</em><sub><em>θ</em></sub>(<em>c</em>)</span>
-当做常数 ，有 <span
-class="math display">$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}_{w\sim
+\end{aligned}$$</span> 可以证明： 当 <span class="math inline"><em>k</em> → ∞</span> 时，并把 <span class="math inline"><em>l</em><em>o</em><em>g</em><em>Z</em><sub><em>θ</em></sub>(<em>c</em>)</span>
+当做常数 ，有 <span class="math display">$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log
 P_\theta(d=0|w,c)\right]\right]\\&amp;=\sum_w\left[P(w|d=1,c)-P_\theta(w|d=1,c)\right]\frac{\partial}{\partial\theta}s_\theta(w,c)\end{aligned}$$</span>
 可以发现： 在这个情况下，最大化噪声对比估计 等价与最大化似然</p>
 <p>我们可以用蒙特卡洛采样法去近似期望，即从数据分布中采样m个点，然后从噪声分布中采样n个点
-<span
-class="math display">$$=\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d=1,c)}{P_{\theta}(w,|d=1,c)+kP(w|d=0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d=0,c)}{P_{\theta}(w^-|d=1,c)+kP(w^-|d=0,c)}$$</span></p>
-<p>当m=1,n=k。那么为 <span
-class="math display">$$\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}+\sum_{w_-}\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}$$</span></p>
-<p>负采样是NCE的一种特殊情况，即让归一化项<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为常数1且令<span
-class="math inline">$kP(w|d=0,c)=1\to P(w|d=0,c)=\frac1k$</span>,</p>
-<p>那么 <span
-class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+<span class="math display">$$=\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d=1,c)}{P_{\theta}(w,|d=1,c)+kP(w|d=0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d=0,c)}{P_{\theta}(w^-|d=1,c)+kP(w^-|d=0,c)}$$</span></p>
+<p>当m=1,n=k。那么为 <span class="math display">$$\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}+\sum_{w_-}\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}$$</span></p>
+<p>负采样是NCE的一种特殊情况，即让归一化项<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为常数1且令<span class="math inline">$kP(w|d=0,c)=1\to P(w|d=0,c)=\frac1k$</span>,</p>
+<p>那么 <span class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\frac{1}{m}\sum_{w}\log\frac{\exp\{s_\theta(w,c)\}}{\exp\{s_\theta(w,c)\}+1}+\frac{k}{n}\sum_{w_-}\log\frac{1}{\exp\{s_\theta(w,c)\}+1}\\
@@ -1132,10 +997,8 @@ P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\frac{1}{m}\sum_{w}\log\frac{1}{1+\exp\{-s_{\theta}(w,c)\}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp\{s_{\theta}(w,c)\}+1}\\
 &amp;=\frac{1}{m}\sum_{w}\log\sigma(s_{\theta}(w,c))+\frac{k}{n}\sum_{w}\log\sigma(-s_{\theta}(w,c))
 \end{aligned}$$</span></p>
-<p>当m=1,n=k,则 <span
-class="math display"> = log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) + ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
-<p>loss <span
-class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) − ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
+<p>当m=1,n=k,则 <span class="math display"> = log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) + ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
+<p>loss <span class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) − ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
 
       
     </div>
@@ -1213,7 +1076,7 @@ class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="category%20test/image-20250811102632139.png" /></p>
+          <p><img src="/2025/08/11/web/framework/category%20test/image-20250811102632139.png"></p>
 <p>本文件在source/_posts/web/framework目录下</p>
 
       
@@ -1292,7 +1155,7 @@ class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="husky%20test/image-20250811100826480.png" /></p>
+          <p><img src="/2025/08/11/web/framework/husky%20test/image-20250811100826480.png"></p>
 
       
     </div>
@@ -1419,26 +1282,21 @@ class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w
           <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
 first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
 more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="create-a-new-post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="run-server">Run server</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
 <h3 id="generate-static-files">Generate static files</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
@@ -1586,7 +1444,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

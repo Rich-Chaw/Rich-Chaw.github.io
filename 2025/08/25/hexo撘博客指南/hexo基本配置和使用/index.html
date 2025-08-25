@@ -223,8 +223,7 @@ Node.js，右键选择“卸载”。</p></li>
 <li><p><strong>验证卸载是否成功</strong> 打开命令提示符，输入： where
 node 如果没有返回路径，说明已成功卸载。</p></li>
 </ul>
-<p>安装nvm 下载地址<a
-target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">Releases ·
+<p>安装nvm 下载地址<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">Releases ·
 coreybutler/nvm-windows</a>，这里我下载了1.1.12版本</p>
 <p>nvm后续升级
 下载新版本的安装包，安装时nvm路径和nodejs都和已有版本一致，安装完就升级到新版本了</p>
@@ -249,10 +248,8 @@ npm_mirror=https://npmmirror.com/mirrors/npm/</p>
 <p>核心功能 npx 的主要作用是直接运行本地或远程 npm
 包中的命令，而无需手动安装。
 自动查找项目中 <em>node_modules/.bin</em> 目录下的可执行文件。如果本地找不到对应的包，会临时从远程下载并执行，执行后自动删除。</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/HuangsTing/article/details/113857145">window下安装并使用nvm（含卸载node、卸载nvm、全局安装npm）-CSDN博客</a>
-<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/549089297">Hexo历险记之三本地安装Hexo
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/HuangsTing/article/details/113857145">window下安装并使用nvm（含卸载node、卸载nvm、全局安装npm）-CSDN博客</a>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/549089297">Hexo历险记之三本地安装Hexo
 - 知乎</a></p>
 <p>查看所有可安装版本 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm view hexo-cli versions</span><br></pre></td></tr></table></figure></p>
 <p>安装最新版hexo： 方式一：安装hexo-cli（建议） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
@@ -294,8 +291,7 @@ d前需要，以避免主页未同步问题。hexo g之前不用</p>
 <p>对应缩写 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo n == hexo new </span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo cl == hexo clean</span><br><span class="line">hexo s == hexo server</span><br></pre></td></tr></table></figure></p>
 <h2 id="部署到github主页">2. 部署到github主页</h2>
 <p>静态网站托管服务使用 <code>Github Pages</code> ，github的这个服务是免费的，因此很多个人博客都会使用这个服务，并且免去了各种意义上的麻烦，<del>包括穷的麻烦。</del> 以下是 <code>Github Pages</code> 的官方文档：
-<a
-target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages">Github
+<a target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages">Github
 Pages</a></p>
 <p>新建一个github仓库
 给仓库起个名称，注意！注意！注意！用户名必须用github账号的用户名</p>
@@ -333,9 +329,8 @@ PID（进程 ID），然后使用 <code>kill -9 &lt;PID&gt;</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 4000</span><br></pre></td></tr></table></figure>
 <p>![[Pasted image 20250801150434.png]]</p>
 <p>这里说明进程18508，占用了端口4000，终止进程 18508</p>
-<p>taskkill /pid <进程id> -f ![[Pasted image 20250801150449.png]]</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/details/127047943?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-127047943-blog-132337172.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">windows查看端口占用和结束端口进程_window-CSDN博客</a></p>
+<p>taskkill /pid <进程id> -f ![[Pasted image 20250801150449.png]]</进程id></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/details/127047943?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-127047943-blog-132337172.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">windows查看端口占用和结束端口进程_window-CSDN博客</a></p>
 <p>![[Pasted image 20250801161847.png]] 1. 安装 hexo-deployer-git
 插件</p>
 <p>要解决这个问题，需要安装 <em>hexo-deployer-git</em> 插件。</p>
@@ -343,8 +338,7 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42262444/article/d
 bash，运行安装指令，这个安装指令没有-g，因此会安装在博客目录下
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</p>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【保姆级】利用Github搭建自己的个人博客，看完就会
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【保姆级】利用Github搭建自己的个人博客，看完就会
 - 知乎</a></p>
 
     </div>
@@ -364,7 +358,10 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【
     <a href="/2025/08/25/%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/" rel="prev" title="公式测试">
       <i class="fa fa-chevron-left"></i> 公式测试
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2025/08/25/xxx/" rel="next" title="xxx">
+      xxx <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -437,7 +434,7 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392994381">【
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

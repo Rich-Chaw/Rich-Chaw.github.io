@@ -27,19 +27,20 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="机器学习领域，尤其是无监督学习和表示学习中，对比学习（Contrastive Learning）已经成为一种非常流行的方法。通过最大化与正样本的相似性，同时最小化与负样本的相似性，使得训练模型能区分“相关”和“不相关”的数据对，从而捕获数据的深层语义信息。 其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： $$\mathcal{L}_N &#x3D; -\ma">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100546253.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100708369.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100724807.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100739168.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100749409.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100802365.png">
-<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100815646.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100546253.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100653204.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100708369.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100724807.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100739168.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100749409.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100802365.png">
+<meta property="og:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100815646.png">
 <meta property="article:published_time" content="2025-08-25T02:09:20.000Z">
 <meta property="article:modified_time" content="2025-08-25T11:31:48.920Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png">
+<meta name="twitter:image" content="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png">
 
 <link rel="canonical" href="http://example.com/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/">
 
@@ -219,11 +220,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="损失函数-InfoNCE/image-20250825100450172.png" /></p>
+        <p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100450172.png"></p>
 <p>机器学习领域，尤其是<strong>无监督学习和表示学习</strong>中，对比学习（Contrastive
 Learning）已经成为一种非常流行的方法。<strong>通过最大化与正样本的相似性，同时最小化与负样本的相似性</strong>，使得训练模型能区分“相关”和“不相关”的数据对，从而捕获数据的深层语义信息。</p>
-<p>其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： <span
-class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
+<p>其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： <span class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
 \frac{f_k(x_i, c_t)}{\sum_{x_j \in X} f_k(x_j, c_t)} \right]
 \tag{4}$$</span></p>
 <p>InfoNCE 全称是 Info Noise-Contrastive Estimation
@@ -232,13 +232,11 @@ Loss，基于噪声对比估计（Noise-Contrastive Estimation, NCE）。</p>
 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.03748">[1807.03748] Representation
 Learning with Contrastive Predictive Coding</a>
 应用：对比学习，大模型训练如 CLIP[Contrastive Language-Image
-Pretraining]所采用。 <a
-target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.00020">[2103.00020] Learning
+Pretraining]所采用。 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.00020">[2103.00020] Learning
 Transferable Visual Models From Natural Language Supervision</a></p>
 <h2 id="cpc">1. CPC</h2>
 <p>CPC简介:来着google DeepMind 2019 [CPC-Representation Learning with
-Contrastive Predictive Coding]：基于对比预测编码的表示学习 PPT：<a
-target="_blank" rel="noopener" href="https://www2.cs.arizona.edu/~pachecoj/courses/csc696h_spring24/lectures/thang_cpc.pdf">Representation
+Contrastive Predictive Coding]：基于对比预测编码的表示学习 PPT：<a target="_blank" rel="noopener" href="https://www2.cs.arizona.edu/~pachecoj/courses/csc696h_spring24/lectures/thang_cpc.pdf">Representation
 Learning with Contrastive Predictive Coding</a></p>
 <ol type="1">
 <li>CPC是一个unsupervised representation learning
@@ -254,162 +252,95 @@ Learning with Contrastive Predictive Coding</a></p>
 <p>CPC希望学习到的这个表示能预测未来。</p>
 <p>设当前的上下文为 <span class="math inline"><em>c</em></span>
 ，预测未来目标为 <span class="math inline"><em>x</em></span>，
-如果用生成模型来建模 <span
-class="math inline"><em>p</em>(<em>x</em>|<em>c</em></span>)（条件概率分布）
+如果用生成模型来建模 <span class="math inline"><em>p</em>(<em>x</em>|<em>c</em></span>)（条件概率分布）
 在高维数据中非常困难，因为它需要生成数据的每一个细节。而且单模态损失如均方误差和交叉熵并不是很有用。</p>
 <p>CPC的做法是：<strong>让 <span class="math inline"><em>c</em></span>
 和 <span class="math inline"><em>x</em></span>
 之间的表示保留尽可能多的互信息 (Mutual Information,
 MI)</strong>。这样的表示能编码高维输入信号不同部分之间的潜在共享信息（latent
 shared information），并且丢弃低维信息和局部噪声</p>
-<p><span class="math inline"><em>x</em></span> 和 <span
-class="math inline"><em>c</em></span> 的互信息定义为 <span
-class="math display">$$I(x;c)=\sum_{x,c}p(x,c)\log\frac{p(x|c)}{p(x)}
+<p><span class="math inline"><em>x</em></span> 和 <span class="math inline"><em>c</em></span> 的互信息定义为 <span class="math display">$$I(x;c)=\sum_{x,c}p(x,c)\log\frac{p(x|c)}{p(x)}
 \tag{1}$$</span> &gt; 互信息（Mutual
 Information）：指变量间的相关性，通常用I(X;Y)表示X和Y之间的互信息，表示引入Y后使X的不确定度减小的量，I(X;Y)越大可以说明两者关系越密切</p>
-<p><img src="损失函数-InfoNCE/image-20250825100546253.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100546253.png"></p>
 <p>在这个图里，raw
-data是最下面的<strong>语音信号</strong>，在这条语音信号上选取一些时间窗口（frames），每一个frame作为输入<span
-class="math inline"><em>x</em></span>，构成序列 <span
-class="math inline">{<em>x</em><sub><em>t</em></sub>}</span>，</p>
-<p>CPC用一个encoder <span
-class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>（比如AutoEncoder或者CNN），对每个
+data是最下面的<strong>语音信号</strong>，在这条语音信号上选取一些时间窗口（frames），每一个frame作为输入<span class="math inline"><em>x</em></span>，构成序列 <span class="math inline">{<em>x</em><sub><em>t</em></sub>}</span>，</p>
+<p>CPC用一个encoder <span class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>（比如AutoEncoder或者CNN），对每个
 <span class="math inline"><em>x</em><sub><em>t</em></sub></span>
-编码得到 latent vector <span
-class="math inline"><em>z</em><sub><em>t</em></sub> = <em>g</em><sub><em>e</em><em>n</em><em>c</em></sub>(<em>x</em><sub><em>t</em></sub>)</span>**
-，为了做预测，把序列<span
-class="math inline">{<em>z</em><sub><em>t</em></sub>}</span>放到一个可以做预测的，有回归性质的模型
-<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>
+编码得到 latent vector <span class="math inline"><em>z</em><sub><em>t</em></sub> = <em>g</em><sub><em>e</em><em>n</em><em>c</em></sub>(<em>x</em><sub><em>t</em></sub>)</span>**
+，为了做预测，把序列<span class="math inline">{<em>z</em><sub><em>t</em></sub>}</span>放到一个可以做预测的，有回归性质的模型
+<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>
 里（比如RNN），用 <span class="math inline"><em>t</em></span>
-及其之前的frames为输入 <span
-class="math inline">{<em>z</em><sub> ≤ <em>t</em></sub>}</span> ，得到
-<span
-class="math inline"><em>c</em><sub><em>t</em></sub> = <em>g</em><sub><em>a</em><em>r</em></sub>(<em>z</em><sub> ≤ <em>t</em></sub>)</span></p>
-<p>按上节所说，CPC的巧妙之处在于，它不直接建模 (<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>)，而是用一个评分函数
-<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-<strong>建模数据的条件分布与独立分布之间的密度比</strong>， <span
-class="math display">$$f_k(x_{t+k}, c_t) \propto
+及其之前的frames为输入 <span class="math inline">{<em>z</em><sub> ≤ <em>t</em></sub>}</span> ，得到
+<span class="math inline"><em>c</em><sub><em>t</em></sub> = <em>g</em><sub><em>a</em><em>r</em></sub>(<em>z</em><sub> ≤ <em>t</em></sub>)</span></p>
+<p>按上节所说，CPC的巧妙之处在于，它不直接建模 (<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>)，而是用一个评分函数
+<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<strong>建模数据的条件分布与独立分布之间的密度比</strong>， <span class="math display">$$f_k(x_{t+k}, c_t) \propto
 \frac{p(x_{t+k}|c_t)}{p(x_{t+k})} \tag{2}$$</span>
-右项的密度比来自互信息方程(1)，衡量的是<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>在给定
+右项的密度比来自互信息方程(1)，衡量的是<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>在给定
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-的条件下出现的可能性，相比它独立出现的可能性。如果 <span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
+的条件下出现的可能性，相比它独立出现的可能性。如果 <span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
 和 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
 高度相关，这个比值会很大；如果不相关，则接近 1 或更小。</p>
-<p>左项评分函数<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>计算为，
-<span
-class="math display"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) = <em>e</em><em>x</em><em>p</em>(<em>z</em><sub><em>t</em> + <em>k</em></sub><sup><em>T</em></sup><em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub>)</span>
-直接用线性矩阵 <span
-class="math inline"><em>W</em><sub>1</sub>, <em>W</em><sub>2</sub>, …, <em>W</em><sub><em>k</em></sub></span> 乘以 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 做预测（也可以用RNN做）得到
-<span
-class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub> = <em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub></span>，然后用向量内积来衡量
-<span
-class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub></span>
-和<span
-class="math inline"><em>z</em><sub><em>t</em> + <em>k</em></sub></span>的相似度。</p>
-<p>现在问题来到怎么训练使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>真的能估计密度比呢？
-**CPC设计了基于NCE的 InfoNCE Loss 如下： <span
-class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
+<p>左项评分函数<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>计算为，
+<span class="math display"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) = <em>e</em><em>x</em><em>p</em>(<em>z</em><sub><em>t</em> + <em>k</em></sub><sup><em>T</em></sup><em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub>)</span>
+直接用线性矩阵 <span class="math inline"><em>W</em><sub>1</sub>, <em>W</em><sub>2</sub>, …, <em>W</em><sub><em>k</em></sub></span> 乘以 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 做预测（也可以用RNN做）得到
+<span class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub> = <em>W</em><sub><em>k</em></sub><em>c</em><sub><em>t</em></sub></span>，然后用向量内积来衡量
+<span class="math inline"><em>ẑ</em><sub><em>t</em> + <em>k</em></sub></span>
+和<span class="math inline"><em>z</em><sub><em>t</em> + <em>k</em></sub></span>的相似度。</p>
+<p>现在问题来到怎么训练使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>真的能估计密度比呢？
+**CPC设计了基于NCE的 InfoNCE Loss 如下： <span class="math display">$$\mathcal{L}_N = -\mathbb{E}_X \left[ \log
 \frac{f_k(x_{t+k}, c_t)}{\sum_{x_j \in X} f_k(x_j, c_t)} \right]
 \tag{4}$$</span></p>
 <ul>
-<li><span
-class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, …, <em>x</em><sub><em>N</em></sub>}</span>是一个样本集，包含
+<li><span class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, …, <em>x</em><sub><em>N</em></sub>}</span>是一个样本集，包含
 <ul>
-<li>1个正样本(positive sample)，与上下文 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 相关，采样自
-<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>，即正在用的那条语音信号K步之内的frame
-<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span></li>
+<li>1个正样本(positive sample)，与上下文 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 相关，采样自
+<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>，即正在用的那条语音信号K步之内的frame
+<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span></li>
 <li><span class="math inline"><em>N</em> − 1</span>
-个负样本(negative/noise sample），与上下文 <span
-class="math inline"><em>c</em><sub><em>t</em></sub></span> 无关，采样自
-<span
-class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>)</span>，即K步之外的frame或从其他条的语音信号里随机选择的一个frame
+个负样本(negative/noise sample），与上下文 <span class="math inline"><em>c</em><sub><em>t</em></sub></span> 无关，采样自
+<span class="math inline"><em>p</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>)</span>，即K步之外的frame或从其他条的语音信号里随机选择的一个frame
 <span class="math inline"><em>x</em><sub><em>j</em></sub></span></li>
 </ul></li>
-<li><span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-是一个评分函数，表示正样本对 <span
-class="math inline">(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-的匹配程度。<span
-class="math inline">∑<sub><em>x</em><sub><em>j</em></sub> ∈ <em>X</em></sub><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>j</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<li><span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+是一个评分函数，表示正样本对 <span class="math inline">(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+的匹配程度。<span class="math inline">∑<sub><em>x</em><sub><em>j</em></sub> ∈ <em>X</em></sub><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>j</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
 是正样本和所有负样本评分的总和。</li>
 </ul>
-<p><span
-class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>和<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>还有线性矩阵都进行联合训练以最小化InfoNCE
-loss， <strong><span
-class="math inline"><em>z</em><sub><em>t</em></sub></span>和<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>均可作为表示。当过去的信息有用时<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>  ，当不需要额外上下文信息时<span
-class="math inline"><em>z</em><sub><em>t</em></sub></span>。</strong></p>
-<p>直观来看，最小化InfoNCE loss将最大化正样本的评分 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+<p><span class="math inline"><em>g</em><sub><em>e</em><em>n</em><em>c</em></sub></span>和<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>还有线性矩阵都进行联合训练以最小化InfoNCE
+loss， <strong><span class="math inline"><em>z</em><sub><em>t</em></sub></span>和<span class="math inline"><em>c</em><sub><em>t</em></sub></span>均可作为表示。当过去的信息有用时<span class="math inline"><em>c</em><sub><em>t</em></sub></span>  ，当不需要额外上下文信息时<span class="math inline"><em>z</em><sub><em>t</em></sub></span>。</strong></p>
+<p>直观来看，最小化InfoNCE loss将最大化正样本的评分 <span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
 相对于所有样本评分之和的比例，实际上是在<strong>训练模型识别“真正相关的样本对”</strong>，使
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-的预测和正样本 <span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
-的表示相似（接近）。但如何解释InfoNSE真的能使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比呢？</p>
+的预测和正样本 <span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>
+的表示相似（接近）。但如何解释InfoNSE真的能使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比呢？</p>
 <h3 id="infonce背后的原理">1.1. InfoNCE背后的原理</h3>
-<p>如果能证明InfoNCE真的能使评分函数 <span
-class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比。那么最大化正样本的评分
-<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-就能最大化密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
+<p>如果能证明InfoNCE真的能使评分函数 <span class="math inline"><em>f</em><sub><em>k</em></sub>()</span>估计密度比。那么最大化正样本的评分
+<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+就能最大化密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
 <p>证明： InfoNCE loss ： <span class="math display">$$\mathcal{L}_N =
 -\mathbb{E}_X \left[ \log \frac{f_k(x_i, c_t)}{\sum_{x_j \in X} f_k(x_j,
 c_t)} \right] \tag{4}$$</span></p>
-<p>InfoNCE loss在形式上是<strong>分类交叉熵</strong>， <span
-class="math inline">$\frac{f_k}{\sum_Xf_k}$</span>是 第<span
-class="math inline"><em>i</em></span>个样本<span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
-类别为正样本的预测概率，以下改写为 <span
-class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>。</p>
-<p>最小化InfoNCE loss等价于最大化预测 <span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
+<p>InfoNCE loss在形式上是<strong>分类交叉熵</strong>， <span class="math inline">$\frac{f_k}{\sum_Xf_k}$</span>是 第<span class="math inline"><em>i</em></span>个样本<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+类别为正样本的预测概率，以下改写为 <span class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>。</p>
+<p>最小化InfoNCE loss等价于最大化预测 <span class="math inline"><em>x</em><sub><em>i</em></sub></span>
 类别为正样本的概率</p>
-<p>回忆一下，我们是构造了一组随机样本<span
-class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, ⋯, <em>x</em><sub><em>N</em></sub>}</span>，里面有一个正样本<span
-class="math inline"><em>x</em><sub><em>i</em></sub></span> ，采样自<span
-class="math inline"><em>x</em><sub><em>i</em></sub> ∼ <em>p</em>(<em>x</em>|<em>c</em>)</span>。而其余的是负样本<span
-class="math inline"><em>x</em><sub><em>l</em> ≠ <em>i</em></sub></span>，采样自<span
-class="math inline"><em>p</em>(<em>x</em>)</span></p>
-<p><span
-class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>可以计算为
-<span
-class="math display">$$\begin{gathered}p(d=i|X,c_{t})=\frac{p(x_i|c_t)\prod_{l\neq
+<p>回忆一下，我们是构造了一组随机样本<span class="math inline"><em>X</em> = {<em>x</em><sub>1</sub>, ⋯, <em>x</em><sub><em>N</em></sub>}</span>，里面有一个正样本<span class="math inline"><em>x</em><sub><em>i</em></sub></span> ，采样自<span class="math inline"><em>x</em><sub><em>i</em></sub> ∼ <em>p</em>(<em>x</em>|<em>c</em>)</span>。而其余的是负样本<span class="math inline"><em>x</em><sub><em>l</em> ≠ <em>i</em></sub></span>，采样自<span class="math inline"><em>p</em>(<em>x</em>)</span></p>
+<p><span class="math inline"><em>p</em>(<em>d</em> = <em>i</em>|<em>X</em>, <em>c</em><sub><em>t</em></sub>)</span>可以计算为
+<span class="math display">$$\begin{gathered}p(d=i|X,c_{t})=\frac{p(x_i|c_t)\prod_{l\neq
 i}p(x_l)}{\sum_{j=1}^N [p(x_j|c_t)\prod_{l\neq
 j}p(x_l)]}\\=\frac{\frac{p(x_i|c_t)}{p(x_i)}}{\sum_{j=1}^N\frac{p(x_j|c_t)}{p(x_j)}}.\end{gathered}
 \tag{5}$$</span></p>
-<p>从上式可以证明，式(4)中<span
-class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
-与密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>成正比，与负样本个数<span
-class="math inline"><em>N</em> − 1</span>的选择无关。</p>
-<p>也就是说 最小化InfoNCE loss等价于最大化预测 <span
-class="math inline"><em>x</em><sub><em>i</em></sub></span>
-类别为正样本的概率，等价最大化了密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
-<p>附录证明了最小化InfoNCE loss，不仅最大化密度比<span
-class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>，也确实最大化
-<span
-class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>和
+<p>从上式可以证明，式(4)中<span class="math inline"><em>f</em><sub><em>k</em></sub>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>)</span>
+与密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>成正比，与负样本个数<span class="math inline"><em>N</em> − 1</span>的选择无关。</p>
+<p>也就是说 最小化InfoNCE loss等价于最大化预测 <span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+类别为正样本的概率，等价最大化了密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span></p>
+<p>附录证明了最小化InfoNCE loss，不仅最大化密度比<span class="math inline">$\frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</span>，也确实最大化
+<span class="math inline"><em>x</em><sub><em>t</em> + <em>k</em></sub></span>和
 <span class="math inline"><em>c</em><sub><em>t</em></sub></span>
-之间的互信息的下限 <span
-class="math display"><em>I</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) ≥ log (<em>N</em>) − ℒ<sub>N</sub></span>
-<a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">InfoNCE：互信息噪声对比估计_哔哩哔哩_bilibili</a></p>
+之间的互信息的下限 <span class="math display"><em>I</em>(<em>x</em><sub><em>t</em> + <em>k</em></sub>, <em>c</em><sub><em>t</em></sub>) ≥ log (<em>N</em>) − ℒ<sub>N</sub></span>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">InfoNCE：互信息噪声对比估计_哔哩哔哩_bilibili</a></p>
 <h2 id="experiment">2. Experiment</h2>
 <p><strong>强调：CPC学到的是表示，能预测的也是表示</strong></p>
 <p>CPC论文里做了语音信号，视觉、自然语言和强化学习的实验 ### 2.1. Audio
@@ -421,15 +352,11 @@ target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi
 简单来说，phoneme是一个抽象的概念，而phone是其具体的发音表现形式。</li>
 </ul>
 </blockquote>
-<p>预测语音信号未来1-20个frame的latent vector <span
-class="math inline"><em>z</em></span> 的平均准确率。 <img
-src="损失函数-InfoNCE/image-20250825100653204.png" /></p>
-<p>对<span
-class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>的输出<span
-class="math inline"><em>c</em><sub><em>t</em></sub></span>
+<p>预测语音信号未来1-20个frame的latent vector <span class="math inline"><em>z</em></span> 的平均准确率。 <img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100653204.png"></p>
+<p>对<span class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>的输出<span class="math inline"><em>c</em><sub><em>t</em></sub></span>
 (256维)，使用线性逻辑回归分类器分类。phone分类和speaker分类的准确性。</p>
 <p><strong>梅尔频率倒谱系数（MFCC）</strong> 是语音识别中广泛使用的一种特征提取方法。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100708369.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100708369.png"></p>
 <p>两项针对phone分类的CPC消融研究。 -
 改变了预测步数，这表明预测多步对于学习有用的表示是重要的 -
 固定预测步数为12， - mixed speaker，负样本包含不同speaker的语音信号 -
@@ -437,7 +364,7 @@ same speaker：与相同说话人实验(第二行)相反。 -
 在第三个和第四个实验中，排除当前语音信号，从(因此,
 X中只存在小批量数据中的其他例子)中提取负样本， -
 在最后一个实验中，只提取序列(因此所有样本均来自同一说话人)中的负样本。
-<img src="损失函数-InfoNCE/image-20250825100724807.png" /></p>
+<img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100724807.png"></p>
 <h3 id="natural-language">2.2. Natural Language</h3>
 <p>做的是transfer learning实验，严格遵循了Skip-thought[ 26
 ]的步骤。首先在BookCorpus数据集[42]上学习无监督模型，在一组新数据集上做句子（sentence）分类任务。为了处理在训练过程中没有看到的单词，采用与Skip-thought相同的方法进行词扩展，即在word2vec和模型学习到的词嵌入之间构建一个线性映射。</p>
@@ -448,20 +375,19 @@ X中只存在小批量数据中的其他例子)中提取负样本， -
 Skip-thought[26]在Word2Vec的基础上使用LSTM做单词预测，并使用最大似然对观测序列进行预测。Skip-thought
 LM 是加了Layer
 Norm。就是上文说的用生成模型来做预测，相对于CPC来说更难训练得多。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100739168.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100739168.png"></p>
 <h3 id="vision">2.3. vision</h3>
 <p>训练过程如下：从一幅256 × 256的图像中提取一个由64 × 64 的patch组成的7
 × 7网格，重叠32个像素。</p>
 <p>然后通过ResNet-v2-101编码器对每个patch进行编码。使用类似 pixelCNN
 的自回归模型将其转化成一个序列类型，用前几个 patch 作为输入，预测之后的
-patch。 <img src="损失函数-InfoNCE/image-20250825100749409.png" /></p>
+patch。 <img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100749409.png"></p>
 <p>ImageNet top-1非监督分类结果
 计算机视觉中，常对跟踪到的视频块使用三元组损失（Triplet
 loss），使得来自同一对象在不同时间步的块比随机块更相似。[11、29]提出预测图像中块的相对位置，在[10]中颜色值是从灰度图像中预测的。</p>
 <p>==啥是三元组损失== [FaceNet：A Unified Embedding for Face
-Recognition],参阅 <a
-target="_blank" rel="noopener" href="https://blog.csdn.net/zenglaoshi/article/details/106928204">深度学习之三元组损失原理与选取策略_三元组损失函数效果特别差-CSDN博客</a></p>
-<p><img src="损失函数-InfoNCE/image-20250825100802365.png" /></p>
+Recognition],参阅 <a target="_blank" rel="noopener" href="https://blog.csdn.net/zenglaoshi/article/details/106928204">深度学习之三元组损失原理与选取策略_三元组损失函数效果特别差-CSDN博客</a></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100802365.png"></p>
 <h3 id="reinforcement-learning">2.4. Reinforcement Learning</h3>
 <p>在DeepMind Lab
 [51]的3D环境中评估了所提出的无监督学习方法在五种强化学习中的表现：room _
@@ -470,14 +396,11 @@ watermaze，explore _ goal _ location _ small，searchvoid _ arena _
 以批量A2C [52]
 agent为基本模型，并添加CPC作为辅助损失，使学习到的表征编码了关于未来观测的分布。不使用重放replay
 buffer，因此预测结果必须适应策略的变化行为。</p>
-<p><img src="损失函数-InfoNCE/image-20250825100815646.png" /></p>
+<p><img src="/2025/08/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-InfoNCE/image-20250825100815646.png"></p>
 <p>黑色：批量A2C基线，红色：辅助对比丢失</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146709102?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-146709102-blog-134539003.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">深入解析
-InfoNCE Loss：对比学习的基石-CSDN博客</a> <a
-target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146710000?spm=1001.2014.3001.5501">什么是互信息（Mutual
-Information, MI）？CSDN博客</a> <a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129076690">理解Contrastive Predictive
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146709102?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-146709102-blog-134539003.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">深入解析
+InfoNCE Loss：对比学习的基石-CSDN博客</a> <a target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146710000?spm=1001.2014.3001.5501">什么是互信息（Mutual
+Information, MI）？CSDN博客</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129076690">理解Contrastive Predictive
 Coding和NCE Loss - 知乎</a></p>
 
     </div>
@@ -573,7 +496,7 @@ Coding和NCE Loss - 知乎</a></p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

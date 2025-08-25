@@ -232,35 +232,23 @@ J^c &amp;= x\\
 &amp;= y \\
 \end{aligned}
 $$</span></p>
-<p>最早提出NCE思想的论文 <a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive
-Estimation of Unnormalized Statistical Models-2010</a> <a
-target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive
+<p>最早提出NCE思想的论文 <a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise-Contrastive
+Estimation of Unnormalized Statistical Models-2010</a> <a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume13/gutmann12a/gutmann12a.pdf">Noise-Contrastive
 Estimation of Unnormalized Statistical Models, with Applications to
 Natural Image Statistics-2012</a>
-给出了具体的NCE算法，本文主要参考来源于此 <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for
+给出了具体的NCE算法，本文主要参考来源于此 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm for
 training neural probabilistic language models-2012</a></p>
-<p>回顾一下分布的知识： 设真实数据概率分布的概率密度函数为 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>
-，以下简称分布 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>。机器学习的主要目标是
-用一个参数为 <span class="math inline"><em>θ</em></span> 的分布 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span> 估计 <span
-class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>，<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>称为预测概率分布</p>
+<p>回顾一下分布的知识： 设真实数据概率分布的概率密度函数为 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>
+，以下简称分布 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>。机器学习的主要目标是
+用一个参数为 <span class="math inline"><em>θ</em></span> 的分布 <span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span> 估计 <span class="math inline"><em>P</em><sub><em>d</em></sub>(⋅)</span>，<span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>称为预测概率分布</p>
 <blockquote>
-<p>如果能知道<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>的形式，比如是正态分布或指数分布，那么可以直接学习
+<p>如果能知道<span class="math inline"><em>P</em><sub><em>θ</em></sub>(⋅)</span>的形式，比如是正态分布或指数分布，那么可以直接学习
 <span class="math inline"><em>θ</em></span> 的值。
 但大部分情况下我们并不知道具体形式，所以是对每个给定数据的估计概率值，也就是直接学习概率分布。</p>
 </blockquote>
-<p>概率分布要满足积分为1，即 <span
-class="math inline">∫<em>P</em>(<em>x</em>)<em>d</em><em>x</em> = 1</span></p>
-<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件 <span
-class="math display">$$P_\theta(\cdot)=\frac{\hat{P}_\theta(\cdot)}{Z_\theta}$$</span>
-其中分子是非归一化的概率分布，分母 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+<p>概率分布要满足积分为1，即 <span class="math inline">∫<em>P</em>(<em>x</em>)<em>d</em><em>x</em> = 1</span></p>
+<p>一般情况下，预测概率分布需要通过归一化，来保证满足积分为1的条件 <span class="math display">$$P_\theta(\cdot)=\frac{\hat{P}_\theta(\cdot)}{Z_\theta}$$</span>
+其中分子是非归一化的概率分布，分母 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 是配分函数（Partition Function）也称为归一化常数 （Normalized Constant）
 或 Marginalized Evidence</p>
 <p>用神经网络来估计为例 logits 层的输出 是非归一化的概率分布
@@ -269,44 +257,23 @@ class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 Estimation</h2>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1206.6426">A fast and simple algorithm
 for training neural probabilistic language models</a> NCE
-是一个机器学习的方法，不涉及神经网络 - 学习一个参数来表示 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span> -
+是一个机器学习的方法，不涉及神经网络 - 学习一个参数来表示 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span> -
 学习一个能区分 从真实数据分布和噪声分布采样数据的模型的模型</p>
-<p>假设我们的数据是文本，任务是根据给定的上下文context <span
-class="math inline"><em>c</em></span>，预测目标target为单词 <span
-class="math inline"><em>w</em></span> ，希望学习到一个参数为<span
-class="math inline"><em>θ</em></span>（用<span
-class="math inline"><em>θ</em></span>参数化）的预测分布来估计/建模真实分布：
-<span
-class="math display"><em>P</em>(<em>w</em>|<em>c</em>) ≈ <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-让我们假设预测分布 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub></span>
-服从某一个指数族分布，任务是学习该分布的参数<span
-class="math inline"><em>θ</em></span> 值 <span
-class="math display">$$P_\theta(w|c)=\frac{\exp\{s_\theta(w,c)\}}{\sum_{w\in
-V}\exp\{s_\theta(w,c)\}}=\frac{u_\theta(w,c)}{Z_\theta}$$</span> <span
-class="math inline"><em>V</em></span>为词汇表，<span
-class="math inline"><em>S</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>是参数为
-<span class="math inline"><em>θ</em></span> 的评分函数，它量化了词<span
-class="math inline"><em>w</em></span>与上下文<span
-class="math inline"><em>c</em></span>的相容性，一般定义为向量点积</p>
+<p>假设我们的数据是文本，任务是根据给定的上下文context <span class="math inline"><em>c</em></span>，预测目标target为单词 <span class="math inline"><em>w</em></span> ，希望学习到一个参数为<span class="math inline"><em>θ</em></span>（用<span class="math inline"><em>θ</em></span>参数化）的预测分布来估计/建模真实分布：
+<span class="math display"><em>P</em>(<em>w</em>|<em>c</em>) ≈ <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+让我们假设预测分布 <span class="math inline"><em>P</em><sub><em>θ</em></sub></span>
+服从某一个指数族分布，任务是学习该分布的参数<span class="math inline"><em>θ</em></span> 值 <span class="math display">$$P_\theta(w|c)=\frac{\exp\{s_\theta(w,c)\}}{\sum_{w\in
+V}\exp\{s_\theta(w,c)\}}=\frac{u_\theta(w,c)}{Z_\theta}$$</span> <span class="math inline"><em>V</em></span>为词汇表，<span class="math inline"><em>S</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>是参数为
+<span class="math inline"><em>θ</em></span> 的评分函数，它量化了词<span class="math inline"><em>w</em></span>与上下文<span class="math inline"><em>c</em></span>的相容性，一般定义为向量点积</p>
 <h3 id="ml-method">1.1. ML method</h3>
 <p>在机器学习（ML）方法中，是通过最大似然估计（Maximum likelihood
-estimation,MLE）(假设所有样本之间相互独立)来优化参数 <span
-class="math inline"><em>θ</em></span>，目标函数为最大化对数似然<span
-class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望：</p>
-<p><span
-class="math display">max<sub><em>θ</em></sub><em>L</em><sup><em>c</em></sup>(<em>θ</em>) = max<sub><em>θ</em></sub>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)]</span>
-这个期望展开为 <span
-class="math display">𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = ∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
-<p>对应的损失函数为 负对数似然<span
-class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望
-<span
-class="math display">ℒ<sub><em>M</em><em>L</em><em>E</em></sub> = −<em>L</em><sup><em>c</em></sup>(<em>θ</em>) = −𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = −∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-可以看到，这个其实就是类别数为 <span
-class="math inline">|<em>V</em>|</span> 的多分类交叉熵，</p>
-<p>梯度为 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\frac{\partial}{\partial\theta}
+estimation,MLE）(假设所有样本之间相互独立)来优化参数 <span class="math inline"><em>θ</em></span>，目标函数为最大化对数似然<span class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望：</p>
+<p><span class="math display">max<sub><em>θ</em></sub><em>L</em><sup><em>c</em></sup>(<em>θ</em>) = max<sub><em>θ</em></sub>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)]</span>
+这个期望展开为 <span class="math display">𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = ∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>对应的损失函数为 负对数似然<span class="math inline">log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>的期望
+<span class="math display">ℒ<sub><em>M</em><em>L</em><em>E</em></sub> = −<em>L</em><sup><em>c</em></sup>(<em>θ</em>) = −𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)] = −∑<sub><em>w</em> ∈ <em>V</em></sub><em>P</em>(<em>w</em>|<em>c</em>)log <em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+可以看到，这个其实就是类别数为 <span class="math inline">|<em>V</em>|</span> 的多分类交叉熵，</p>
+<p>梯度为 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\frac{\partial}{\partial\theta}
 \mathbb{E}_{w\sim P(w|c)}\left[\log
 P_{\theta}(w|c)\right]\\&amp;=\frac{\partial}{\partial\theta}\mathbb{E}_{w\sim
 P(w|c)}\left[\log\frac{\exp\{s_\theta(w,c)\}}{Z_\theta}\right]\\
@@ -315,13 +282,8 @@ P(w|c)}s_\theta(w,c) - \frac{\partial}{\partial\theta} logZ_\theta\\
 &amp;=\sum_{w\in
 V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)
 \end{aligned}$$</span></p>
-<p>实际计算中，给定一个在上下文 <span
-class="math inline"><em>c</em></span> 中观察到的词 <span
-class="math inline"><em>w</em></span>，就对<span
-class="math inline"><em>L</em><sup><em>c</em></sup>(<em>θ</em>)</span>求一次梯度，<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-只对观察到的词 <span class="math inline"><em>w</em></span>，为1： <span
-class="math display">$$
+<p>实际计算中，给定一个在上下文 <span class="math inline"><em>c</em></span> 中观察到的词 <span class="math inline"><em>w</em></span>，就对<span class="math inline"><em>L</em><sup><em>c</em></sup>(<em>θ</em>)</span>求一次梯度，<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+只对观察到的词 <span class="math inline"><em>w</em></span>，为1： <span class="math display">$$
 \begin{aligned}\frac{\partial}{\partial\theta}L^c(\theta)&amp;=\sum_{w\in
 V}[P(w|c)-P_\theta(w|c)]\frac{\partial}{\partial\theta}s_\theta(w,c)\\
 &amp;=\frac{\partial}{\partial\theta}s_\theta(w,c)-\sum_{w\in
@@ -329,66 +291,41 @@ V}\frac{\exp s_\theta(w,c)}{\sum_{w\in
 V}\exp\{s_\theta(w,c)\}})\frac{\partial}{\partial\theta}s_\theta(w,c)
 \end{aligned}
 $$</span></p>
-<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的<span
-class="math inline"><em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>来求
-<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+<p>优化他有些困难的，在计算梯度时计算词汇表中所有单词的<span class="math inline"><em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)</span>来求
+<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
 中的<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span></p>
-<p>论文里提到了Importance sampling 来解决 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+<p>论文里提到了Importance sampling 来解决 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 计算复杂度高的问题，但是存在一些缺点。</p>
 <h3 id="nce-method">1.2. NCE method</h3>
 <p>噪声对比估计（Noise-Contrastive
 Estimation，NCE）:一种参数学习方法</p>
 <p>不是通过最大似然估计直接求参数，而是通过对比来求参数，任务是学习一个能区分从真实数据分布和噪声分布采样数据的模型，从而学习到
-<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
-<p>这个模型其实就是一个二元分类器 <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
-，来估计<span
-class="math inline"><em>P</em>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span></p>
+<p>这个模型其实就是一个二元分类器 <span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
+，来估计<span class="math inline"><em>P</em>(<em>D</em>|<em>w</em>, <em>c</em>)</span>
 ，标签D=1或0分别表示 <span class="math inline"><em>w</em></span>
-是来自真实数据分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-（论文中称为 <span
-class="math inline"><em>P</em><sub><em>d</em></sub><sup><em>c</em></sup></span>
+是来自真实数据分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+（论文中称为 <span class="math inline"><em>P</em><sub><em>d</em></sub><sup><em>c</em></sup></span>
 ），还是噪声分布 <span class="math inline"><em>P</em>(<em>w</em>)</span>
-（论文中称为 <span
-class="math inline"><em>P</em><sub><em>n</em></sub></span> ）</p>
+（论文中称为 <span class="math inline"><em>P</em><sub><em>n</em></sub></span> ）</p>
 <blockquote>
 <p>二元分类器可以通过逻辑回归来进行学习。</p>
 </blockquote>
-<p>在噪声对比估计中，往往在数据分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
-中采样1个正样本w，标签D=1。然后从噪声分布 <span
-class="math inline"><em>P</em>(<em>w</em>)</span>
+<p>在噪声对比估计中，往往在数据分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>
+中采样1个正样本w，标签D=1。然后从噪声分布 <span class="math inline"><em>P</em>(<em>w</em>)</span>
 中采样k个负样本w，标签D=0</p>
-<p>也就是说，这k+1个样本构成的样本集<span
-class="math inline"><em>X</em></span>来自分布 <span
-class="math inline">$\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</span></p>
-<p>那么标签D=1，即样本来自真实分布 <span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>的后验概率为
-<span
-class="math display">$$P(D=1|w,c)=\frac{P(w|c)}{P(w|c)+kP(w)}$$</span></p>
-<p>由于我们希望用<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>拟合<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，所以我们用<span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>代替方程中的<span
-class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，使后验概率成参数<span
-class="math inline"><em>θ</em></span>的函数： <span
-class="math display">$$P_\theta(D=1|w,c)=\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</span></p>
-<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集<span
-class="math inline"><em>X</em></span>上做优化，最大化对数似然<span
-class="math inline"><em>l</em><em>o</em><em>g</em><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>θ</em>)</span>的期望值
+<p>也就是说，这k+1个样本构成的样本集<span class="math inline"><em>X</em></span>来自分布 <span class="math inline">$\frac{1}{k+1}P(w|c) + \frac{k}{k+1}P(w)$</span></p>
+<p>那么标签D=1，即样本来自真实分布 <span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>的后验概率为
+<span class="math display">$$P(D=1|w,c)=\frac{P(w|c)}{P(w|c)+kP(w)}$$</span></p>
+<p>由于我们希望用<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>拟合<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，所以我们用<span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>代替方程中的<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span>，使后验概率成参数<span class="math inline"><em>θ</em></span>的函数： <span class="math display">$$P_\theta(D=1|w,c)=\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}$$</span></p>
+<p>我们简单地在真实数据和噪声样本的混合下得到的一个样本集<span class="math inline"><em>X</em></span>上做优化，最大化对数似然<span class="math inline"><em>l</em><em>o</em><em>g</em><em>P</em><sub><em>θ</em></sub>(<em>D</em>|<em>w</em>, <em>θ</em>)</span>的期望值
 <span class="math display">$$\begin{aligned}\max_\theta
 J^c(\theta)&amp;=\max_\theta \mathbb{E}_X[log P_\theta( D | w , θ)]
 \\&amp;=\max_\theta
 \left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
 \right)\end{aligned}$$</span></p>
-<p>对<span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
-求梯度 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;=
+<p>对<span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+求梯度 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)&amp;=
 \frac{\partial}
 {\partial\theta}\left(\mathbb{E}_{P(w|c)}\left[\log\frac{P_\theta(w|c)}{P_\theta(w|c)+kP(w)}\right]+k\mathbb{E}_{P(w)}\left[\log\frac{kP(w)}{P_\theta(w|c)+kP(w)}\right]
 \right)
@@ -400,100 +337,61 @@ P_\theta(w|c)\right]-k\mathbb{E}_{P(w)}\left[\frac{P_\theta(w|c)}{P_\theta(w|c)+
 &amp;=\sum_{w\in
 V}(P(w|c)-P_\theta(w|c))\frac{kP(w)}{P_\theta(w|c)+kP(w)}\frac{\partial}{\partial\theta}\log
 P_\theta(w|c)\end{aligned}$$</span></p>
-<p>当 <span
-class="math inline"><em>k</em> → ∞</span>，趋近于最大似然的梯度 <span
-class="math display">$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in
+<p>当 <span class="math inline"><em>k</em> → ∞</span>，趋近于最大似然的梯度 <span class="math display">$$\frac{\partial}{\partial\theta}J^c(\theta)\to\sum_{w\in
 v}(P(w|c)-P_\theta(w|c))\frac{\partial}{\partial\theta}\log
 P_\theta(w|c)$$</span></p>
-<p>实际训练过程中，给定一个在上下文<span
-class="math inline"><em>c</em></span>中观察到的词<span
-class="math inline"><em>w</em></span>，我们通过生成<span
-class="math inline"><em>k</em></span>个噪声样本<span
-class="math inline"><em>x</em><sub>1</sub>, …, <em>x</em><sub><em>k</em></sub></span>，<span
-class="math inline"><em>w</em></span>对梯度的贡献为 <span
-class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)=&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\\&amp;\begin{aligned}\sum_{i=1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log
+<p>实际训练过程中，给定一个在上下文<span class="math inline"><em>c</em></span>中观察到的词<span class="math inline"><em>w</em></span>，我们通过生成<span class="math inline"><em>k</em></span>个噪声样本<span class="math inline"><em>x</em><sub>1</sub>, …, <em>x</em><sub><em>k</em></sub></span>，<span class="math inline"><em>w</em></span>对梯度的贡献为 <span class="math display">$$\begin{aligned}\frac{\partial}{\partial\theta}J^c(\theta)=&amp;\frac{kP(w)}{P_{\theta}(w|c)+kP_{n}(w)}\frac{\partial}{\partial\theta}\operatorname{log}P_{\theta}(w|c)-\\&amp;\begin{aligned}\sum_{i=1}^k\left[\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}\frac{\partial}{\partial\theta}\log
 P_\theta(x_i|c)\right]\end{aligned}\end{aligned}$$</span></p>
-<p>注意 <span
-class="math inline">$\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$</span>
+<p>注意 <span class="math inline">$\frac{P_\theta(x_i|c)}{P_\theta(x_i|c)+kP(x_i)}$</span>
 的值一定在0到1之间，不像importance
 sampling的方法一样会变得方差很大，基于NCE的学习是很稳定的</p>
-<p>上文所述的 <span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
-用于学习对某一个上下文<span
-class="math inline"><em>c</em></span>的分布<span
-class="math inline"><em>p</em>(<em>w</em>|<em>c</em>)</span>，称为局部NCE目标函数</p>
+<p>上文所述的 <span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+用于学习对某一个上下文<span class="math inline"><em>c</em></span>的分布<span class="math inline"><em>p</em>(<em>w</em>|<em>c</em>)</span>，称为局部NCE目标函数</p>
 <p>通过使用经验上下文概率P(c)作为权重来组合每个上下文c的NCE目标，定义全局NCE目标函数
-<span
-class="math display"><em>J</em>(<em>θ</em>) = ∑<sub><em>c</em></sub><em>P</em>(<em>c</em>)<em>J</em>(<em>θ</em>)</span></p>
+<span class="math display"><em>J</em>(<em>θ</em>) = ∑<sub><em>c</em></sub><em>P</em>(<em>c</em>)<em>J</em>(<em>θ</em>)</span></p>
 <h3 id="dealing-with-normalizing-constants">1.3. Dealing with
 normalizing constants</h3>
-<p>如上文所述， <span
-class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
-中的<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>难以计算。NCE通过避免显式归一化和将<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为
+<p>如上文所述， <span class="math inline"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>)</span>
+中的<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>难以计算。NCE通过避免显式归一化和将<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>作为要学习的参数处理这一问题。因此，模型被参数化为一个参数为
 <span class="math inline"><em>θ</em><sup>0</sup></span>
-非归一化分布<span
-class="math inline"><em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)</span>和一个参数<span
-class="math inline"><em>ϕ</em></span>用于表示<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>的对数 <span
-class="math display"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>) = <em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)exp (<em>ϕ</em>)</span>
-那么 参数 <span
-class="math inline"><em>θ</em> = {<em>θ</em><sup>0</sup>, <em>ϕ</em>}</span>
+非归一化分布<span class="math inline"><em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)</span>和一个参数<span class="math inline"><em>ϕ</em></span>用于表示<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>的对数 <span class="math display"><em>P</em><sub><em>θ</em></sub>(<em>w</em>|<em>c</em>) = <em>P</em><sub><em>θ</em><sup>0</sup></sub>(<em>w</em>|<em>c</em>)exp (<em>ϕ</em>)</span>
+那么 参数 <span class="math inline"><em>θ</em> = {<em>θ</em><sup>0</sup>, <em>ϕ</em>}</span>
 每对一个上下文 <span class="math inline"><em>c</em></span>
-都需要学习一个对应的 <span
-class="math inline"><em>ϕ</em></span>，这使得难以扩展到具有大规模上下文的情况。</p>
+都需要学习一个对应的 <span class="math inline"><em>ϕ</em></span>，这使得难以扩展到具有大规模上下文的情况。</p>
 <h4 id="negative-sampling-负采样">1.3.1. negative sampling 负采样</h4>
-<p>论文发现将<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为1效果也很好，使用
+<p>论文发现将<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为1效果也很好，使用
 <span class="math inline"><em>Z</em><sub><em>θ</em></sub> = 1</span>
-时的<span
-class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
+时的<span class="math inline"><em>J</em><sup><em>c</em></sup>(<em>θ</em>)</span>
 作为目标函数的方法为称为 负采样。</p>
-<p>比如用负采样改进的了word2vec <span
-class="math display">$$\begin{aligned}P(D=0\mid
+<p>比如用负采样改进的了word2vec <span class="math display">$$\begin{aligned}P(D=0\mid
 w,c)&amp;=\frac{1}{u_\theta(w,c)+1}\\P(D=1\mid
 w,c)&amp;=\frac{u_\theta(w,c)}{u_\theta(w,c)+1}.\end{aligned}$$</span>
-<span
-class="math inline"><em>u</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>) = exp {<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)}</span></p>
+<span class="math inline"><em>u</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>) = exp {<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)}</span></p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1410.8251">Notes on Noise Contrastive
-Estimation and Negative Sampling</a> <a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记]
+Estimation and Negative Sampling</a> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/MarisaMagic/p/17949927">[NLP复习笔记]
 Word2Vec: 基于负采样的 Skip-gram 及其 SGD 训练 - 博客园</a></p>
 <h3 id="复杂度">1.4. 复杂度</h3>
-<p>假设<span class="math inline"><em>c</em></span>是上下文大小，<span
-class="math inline"><em>d</em></span>是单词特征向量维度，<span
-class="math inline"><em>V</em></span>是模型的词汇量大小。</p>
-<p>利用公式计算预测表示，NCE和ML学习都需要进行<span
-class="math inline"><em>c</em><em>d</em><sup>2</sup></span>操作。
-对于ML，从预测的表示中计算下一个单词的分布大约需要<span
-class="math inline"><em>V</em><em>d</em></span>个操作。
-对于NCE，在k个噪声样本下的分类为正样本的概率大约需要<span
-class="math inline"><em>k</em><em>d</em></span>次操作 由于
+<p>假设<span class="math inline"><em>c</em></span>是上下文大小，<span class="math inline"><em>d</em></span>是单词特征向量维度，<span class="math inline"><em>V</em></span>是模型的词汇量大小。</p>
+<p>利用公式计算预测表示，NCE和ML学习都需要进行<span class="math inline"><em>c</em><em>d</em><sup>2</sup></span>操作。
+对于ML，从预测的表示中计算下一个单词的分布大约需要<span class="math inline"><em>V</em><em>d</em></span>个操作。
+对于NCE，在k个噪声样本下的分类为正样本的概率大约需要<span class="math inline"><em>k</em><em>d</em></span>次操作 由于
 k&lt;&lt;|V|，所以NCE大大提升了计算速度</p>
 <h3 id="总结">1.5. 总结</h3>
 <p>总结一下，NCE做了两件事 -
-更改了目标函数，任务从多分类问题到二分类问题 - 验证了 <span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
+更改了目标函数，任务从多分类问题到二分类问题 - 验证了 <span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>
 在基于NCE的训练中可以直接设为1</p>
 <h2 id="扩展阅读另一个博主的推导">2. 扩展阅读，另一个博主的推导</h2>
 <p>感觉还是原论文里写的更精炼</p>
-<p><a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yqcEeWEyc?spm_id_from=333.788.videopod.sections&amp;vd_source=5b329c82286a01997454e14991ec6231">NCE噪声对比估计_哔哩哔哩_bilibili</a>中对NCE的推导：
 在给定 <span class="math inline"><em>c</em></span>
-的情况下，正负样本的概率分别为 <span
-class="math display">$$\begin{aligned}P(d=1,w|c)\:=P(w|d=1,c)P(d=1|c)&amp;=P(w|d=1,c)P(d=1)\\&amp;=P(w|d=1,c)\frac{1}{1+k}\end{aligned}$$</span>
-<span
-class="math display">$$\begin{aligned}P(d=0,w|c)\:=P(w|d=0,c)P(d=0|c)&amp;=P(w|d=0,c)P(d=0)\\&amp;=P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span>
+的情况下，正负样本的概率分别为 <span class="math display">$$\begin{aligned}P(d=1,w|c)\:=P(w|d=1,c)P(d=1|c)&amp;=P(w|d=1,c)P(d=1)\\&amp;=P(w|d=1,c)\frac{1}{1+k}\end{aligned}$$</span>
+<span class="math display">$$\begin{aligned}P(d=0,w|c)\:=P(w|d=0,c)P(d=0|c)&amp;=P(w|d=0,c)P(d=0)\\&amp;=P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span>
 通过对 <span class="math inline"><em>d</em></span> 求和，可以得到概率
-<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span> <span
-class="math display">$$\begin{aligned}P(w|c)=\sum_dP(d,w|c)&amp;=P(d=1,w|c)+P(d=0,w|c)\\&amp;=P(w|d=1,c)\frac{1}{1+k}+P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span></p>
-<p>噪声对比估计的目标函数不再是最大化对数似然，而是 <span
-class="math display">max {𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>d</em> = 1, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 1|<em>w</em>, <em>c</em>)] + <em>k</em>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>d</em> = 0|<em>w</em>, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 0|<em>w</em>, <em>c</em>)]}</span>
+<span class="math inline"><em>P</em>(<em>w</em>|<em>c</em>)</span> <span class="math display">$$\begin{aligned}P(w|c)=\sum_dP(d,w|c)&amp;=P(d=1,w|c)+P(d=0,w|c)\\&amp;=P(w|d=1,c)\frac{1}{1+k}+P(w|d=0,c)\frac{k}{1+k}\end{aligned}$$</span></p>
+<p>噪声对比估计的目标函数不再是最大化对数似然，而是 <span class="math display">max {𝔼<sub><em>w</em> ∼ <em>P</em>(<em>w</em>|<em>d</em> = 1, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 1|<em>w</em>, <em>c</em>)] + <em>k</em>𝔼<sub><em>w</em> ∼ <em>P</em>(<em>d</em> = 0|<em>w</em>, <em>c</em>)</sub>[log <em>P</em><sub><em>θ</em></sub>(<em>d</em> = 0|<em>w</em>, <em>c</em>)]}</span>
 P(w|d=1,c)}其实就是 正样本的分布P_d P(w|d=0,c)}噪声分布 P(w|d=0,c)}
 P_n</p>
-<p>展开： <span
-class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+<p>展开： <span class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\mathbb{E}_{w\sim
@@ -503,25 +401,17 @@ P(w|d=0,c)}\left[\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\right]\\
 \frac{\partial}{\partial\theta}\log
 P_\theta(w|d=1,c)-\sum_wP(w|d=0,c)\frac{kP_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}\frac{\partial}{\partial\theta}\log
 P_\theta(w|d=1,c)
-\end{aligned}$$</span> 可以证明： 当 <span
-class="math inline"><em>k</em> → ∞</span> 时，并把 <span
-class="math inline"><em>l</em><em>o</em><em>g</em><em>Z</em><sub><em>θ</em></sub>(<em>c</em>)</span>
-当做常数 ，有 <span
-class="math display">$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}_{w\sim
+\end{aligned}$$</span> 可以证明： 当 <span class="math inline"><em>k</em> → ∞</span> 时，并把 <span class="math inline"><em>l</em><em>o</em><em>g</em><em>Z</em><sub><em>θ</em></sub>(<em>c</em>)</span>
+当做常数 ，有 <span class="math display">$$\begin{aligned}&amp;\frac{\partial}{\partial\theta}\left[\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log
 P_\theta(d=0|w,c)\right]\right]\\&amp;=\sum_w\left[P(w|d=1,c)-P_\theta(w|d=1,c)\right]\frac{\partial}{\partial\theta}s_\theta(w,c)\end{aligned}$$</span>
 可以发现： 在这个情况下，最大化噪声对比估计 等价与最大化似然</p>
 <p>我们可以用蒙特卡洛采样法去近似期望，即从数据分布中采样m个点，然后从噪声分布中采样n个点
-<span
-class="math display">$$=\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d=1,c)}{P_{\theta}(w,|d=1,c)+kP(w|d=0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d=0,c)}{P_{\theta}(w^-|d=1,c)+kP(w^-|d=0,c)}$$</span></p>
-<p>当m=1,n=k。那么为 <span
-class="math display">$$\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}+\sum_{w_-}\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}$$</span></p>
-<p>负采样是NCE的一种特殊情况，即让归一化项<span
-class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为常数1且令<span
-class="math inline">$kP(w|d=0,c)=1\to P(w|d=0,c)=\frac1k$</span>,</p>
-<p>那么 <span
-class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
+<span class="math display">$$=\frac{1}{m}\sum_{w}\log\frac{P_{\theta}(w|d=1,c)}{P_{\theta}(w,|d=1,c)+kP(w|d=0,c)}+\frac{k}{n}\sum_{w^{-}}\log\frac{kP(w^-|d=0,c)}{P_{\theta}(w^-|d=1,c)+kP(w^-|d=0,c)}$$</span></p>
+<p>当m=1,n=k。那么为 <span class="math display">$$\log\frac{P_\theta(w|d=1,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}+\sum_{w_-}\log\frac{kP(w|d=0,c)}{P_\theta(w|d=1,c)+kP(w|d=0,c)}$$</span></p>
+<p>负采样是NCE的一种特殊情况，即让归一化项<span class="math inline"><em>Z</em><sub><em>θ</em></sub></span>固定为常数1且令<span class="math inline">$kP(w|d=0,c)=1\to P(w|d=0,c)=\frac1k$</span>,</p>
+<p>那么 <span class="math display">$$\begin{aligned}&amp;\mathbb{E}_{w\sim
 P(w|d=1,c)}\left[\log P_\theta(d=1|w,c)\right]+k\mathbb{E}_{w\sim
 P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\frac{1}{m}\sum_{w}\log\frac{\exp\{s_\theta(w,c)\}}{\exp\{s_\theta(w,c)\}+1}+\frac{k}{n}\sum_{w_-}\log\frac{1}{\exp\{s_\theta(w,c)\}+1}\\
@@ -529,10 +419,8 @@ P(w|d=0,c)}\left[\log P_\theta(d=0|w,c)\right]\\
 &amp;=\frac{1}{m}\sum_{w}\log\frac{1}{1+\exp\{-s_{\theta}(w,c)\}}+\frac{k}{n}\sum_{w}\log\frac{1}{\exp\{s_{\theta}(w,c)\}+1}\\
 &amp;=\frac{1}{m}\sum_{w}\log\sigma(s_{\theta}(w,c))+\frac{k}{n}\sum_{w}\log\sigma(-s_{\theta}(w,c))
 \end{aligned}$$</span></p>
-<p>当m=1,n=k,则 <span
-class="math display"> = log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) + ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
-<p>loss <span
-class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) − ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
+<p>当m=1,n=k,则 <span class="math display"> = log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) + ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
+<p>loss <span class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>)) − ∑log <em>σ</em>(−<em>s</em><sub><em>θ</em></sub>(<em>w</em>, <em>c</em>))</span></p>
 
     </div>
 
@@ -629,7 +517,7 @@ normalizing constants</span></a><ol class="nav-child"><li class="nav-item nav-le
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
