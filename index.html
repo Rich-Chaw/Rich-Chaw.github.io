@@ -455,7 +455,7 @@ $$</span></p>
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-08-25 10:09:20 / Modified: 19:19:41" itemprop="dateCreated datePublished" datetime="2025-08-25T10:09:20+08:00">2025-08-25</time>
+              <time title="Created: 2025-08-25 10:09:20 / Modified: 19:31:48" itemprop="dateCreated datePublished" datetime="2025-08-25T10:09:20+08:00">2025-08-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -482,7 +482,7 @@ $$</span></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="images/损失函数-InfoNCE/image-20250825100450172.png" /></p>
+          <p><img src="损失函数-InfoNCE/image-20250825100450172.png" /></p>
 <p>机器学习领域，尤其是<strong>无监督学习和表示学习</strong>中，对比学习（Contrastive
 Learning）已经成为一种非常流行的方法。<strong>通过最大化与正样本的相似性，同时最小化与负样本的相似性</strong>，使得训练模型能区分“相关”和“不相关”的数据对，从而捕获数据的深层语义信息。</p>
 <p>其中，InfoNCE Loss 是一种广泛使用的损失函数。 InfoNCE loss ： <span
@@ -530,7 +530,7 @@ class="math inline"><em>c</em></span> 的互信息定义为 <span
 class="math display">$$I(x;c)=\sum_{x,c}p(x,c)\log\frac{p(x|c)}{p(x)}
 \tag{1}$$</span> &gt; 互信息（Mutual
 Information）：指变量间的相关性，通常用I(X;Y)表示X和Y之间的互信息，表示引入Y后使X的不确定度减小的量，I(X;Y)越大可以说明两者关系越密切</p>
-<p><img src="images/损失函数-InfoNCE/image-20250825100546253.png" /></p>
+<p><img src="损失函数-InfoNCE/image-20250825100546253.png" /></p>
 <p>在这个图里，raw
 data是最下面的<strong>语音信号</strong>，在这条语音信号上选取一些时间窗口（frames），每一个frame作为输入<span
 class="math inline"><em>x</em></span>，构成序列 <span
@@ -686,13 +686,13 @@ target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BhfzYwEUi
 </blockquote>
 <p>预测语音信号未来1-20个frame的latent vector <span
 class="math inline"><em>z</em></span> 的平均准确率。 <img
-src="images/损失函数-InfoNCE/image-20250825100653204.png" /></p>
+src="损失函数-InfoNCE/image-20250825100653204.png" /></p>
 <p>对<span
 class="math inline"><em>g</em><sub><em>a</em><em>r</em></sub></span>的输出<span
 class="math inline"><em>c</em><sub><em>t</em></sub></span>
 (256维)，使用线性逻辑回归分类器分类。phone分类和speaker分类的准确性。</p>
 <p><strong>梅尔频率倒谱系数（MFCC）</strong> 是语音识别中广泛使用的一种特征提取方法。</p>
-<p><img src="images/损失函数-InfoNCE/image-20250825100708369.png" /></p>
+<p><img src="损失函数-InfoNCE/image-20250825100708369.png" /></p>
 <p>两项针对phone分类的CPC消融研究。 -
 改变了预测步数，这表明预测多步对于学习有用的表示是重要的 -
 固定预测步数为12， - mixed speaker，负样本包含不同speaker的语音信号 -
@@ -700,7 +700,7 @@ same speaker：与相同说话人实验(第二行)相反。 -
 在第三个和第四个实验中，排除当前语音信号，从(因此,
 X中只存在小批量数据中的其他例子)中提取负样本， -
 在最后一个实验中，只提取序列(因此所有样本均来自同一说话人)中的负样本。
-<img src="images/损失函数-InfoNCE/image-20250825100724807.png" /></p>
+<img src="损失函数-InfoNCE/image-20250825100724807.png" /></p>
 <h3 id="natural-language">2.2. Natural Language</h3>
 <p>做的是transfer learning实验，严格遵循了Skip-thought[ 26
 ]的步骤。首先在BookCorpus数据集[42]上学习无监督模型，在一组新数据集上做句子（sentence）分类任务。为了处理在训练过程中没有看到的单词，采用与Skip-thought相同的方法进行词扩展，即在word2vec和模型学习到的词嵌入之间构建一个线性映射。</p>
@@ -711,21 +711,20 @@ X中只存在小批量数据中的其他例子)中提取负样本， -
 Skip-thought[26]在Word2Vec的基础上使用LSTM做单词预测，并使用最大似然对观测序列进行预测。Skip-thought
 LM 是加了Layer
 Norm。就是上文说的用生成模型来做预测，相对于CPC来说更难训练得多。</p>
-<p><img src="images/损失函数-InfoNCE/image-20250825100739168.png" /></p>
+<p><img src="损失函数-InfoNCE/image-20250825100739168.png" /></p>
 <h3 id="vision">2.3. vision</h3>
 <p>训练过程如下：从一幅256 × 256的图像中提取一个由64 × 64 的patch组成的7
 × 7网格，重叠32个像素。</p>
 <p>然后通过ResNet-v2-101编码器对每个patch进行编码。使用类似 pixelCNN
 的自回归模型将其转化成一个序列类型，用前几个 patch 作为输入，预测之后的
-patch。 <img
-src="images/损失函数-InfoNCE/image-20250825100749409.png" /></p>
+patch。 <img src="损失函数-InfoNCE/image-20250825100749409.png" /></p>
 <p>ImageNet top-1非监督分类结果
 计算机视觉中，常对跟踪到的视频块使用三元组损失（Triplet
 loss），使得来自同一对象在不同时间步的块比随机块更相似。[11、29]提出预测图像中块的相对位置，在[10]中颜色值是从灰度图像中预测的。</p>
 <p>==啥是三元组损失== [FaceNet：A Unified Embedding for Face
 Recognition],参阅 <a
 target="_blank" rel="noopener" href="https://blog.csdn.net/zenglaoshi/article/details/106928204">深度学习之三元组损失原理与选取策略_三元组损失函数效果特别差-CSDN博客</a></p>
-<p><img src="images/损失函数-InfoNCE/image-20250825100802365.png" /></p>
+<p><img src="损失函数-InfoNCE/image-20250825100802365.png" /></p>
 <h3 id="reinforcement-learning">2.4. Reinforcement Learning</h3>
 <p>在DeepMind Lab
 [51]的3D环境中评估了所提出的无监督学习方法在五种强化学习中的表现：room _
@@ -734,7 +733,7 @@ watermaze，explore _ goal _ location _ small，searchvoid _ arena _
 以批量A2C [52]
 agent为基本模型，并添加CPC作为辅助损失，使学习到的表征编码了关于未来观测的分布。不使用重放replay
 buffer，因此预测结果必须适应策略的变化行为。</p>
-<p><img src="images/损失函数-InfoNCE/image-20250825100815646.png" /></p>
+<p><img src="损失函数-InfoNCE/image-20250825100815646.png" /></p>
 <p>黑色：批量A2C基线，红色：辅助对比丢失</p>
 <p><a
 target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/146709102?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-146709102-blog-134539003.235%5Ev43%5Epc_blog_bottom_relevance_base2&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">深入解析
@@ -1187,7 +1186,7 @@ class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-08-25 19:18:37" itemprop="dateModified" datetime="2025-08-25T19:18:37+08:00">2025-08-25</time>
+                <time title="Modified: 2025-08-25 19:31:55" itemprop="dateModified" datetime="2025-08-25T19:31:55+08:00">2025-08-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1214,8 +1213,7 @@ class="math display">−log <em>σ</em>(<em>s</em><sub><em>θ</em></sub>(<em>w
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img
-src="../../../images/category%20test/image-20250811102632139.png" /></p>
+          <p><img src="category%20test/image-20250811102632139.png" /></p>
 <p>本文件在source/_posts/web/framework目录下</p>
 
       
@@ -1267,7 +1265,7 @@ src="../../../images/category%20test/image-20250811102632139.png" /></p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-08-25 19:18:37" itemprop="dateModified" datetime="2025-08-25T19:18:37+08:00">2025-08-25</time>
+                <time title="Modified: 2025-08-25 19:31:55" itemprop="dateModified" datetime="2025-08-25T19:31:55+08:00">2025-08-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1294,8 +1292,7 @@ src="../../../images/category%20test/image-20250811102632139.png" /></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img
-src="../../../images/husky%20test/image-20250811100826480.png" /></p>
+          <p><img src="husky%20test/image-20250811100826480.png" /></p>
 
       
     </div>
