@@ -165,11 +165,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f3565c701acecae8",
+  "active": "29ab0f9054c6498a",
   "lastOpenFiles": [
-    "source/_posts/hello-world.md",
-    "source/_posts/我的第一篇hexo博客.md",
     "source/_posts/front matter test.md",
+    "source/_posts/我的第一篇hexo博客.md",
+    "source/_posts/hello-world.md",
+    "public/2025/08/11/web/framework/category test/index.html",
+    "public/2025/08/11/web/framework/category test",
     "source/_posts/web/framework/husky test.md",
     "source/_posts/web/framework/category test.md",
     "source/_posts/web/framework/images/category test/image-20250811102632139.png",
@@ -183,8 +185,6 @@
     "public/images",
     "public/2025/08/11/web/framework/husky test/index.html",
     "public/2025/08/11/web/framework/husky test",
-    "public/2025/08/11/web/framework",
-    "public/2025/08/11/web",
     "source/images/husky test/image-20250811095721884.png",
     "source/images/Pasted image 20250811092012.png",
     "public/css/images/banner.jpg",
