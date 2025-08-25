@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+                "file": "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
                 "mode": "source",
                 "source": false
               }
@@ -116,7 +116,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md"
+                "file": "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md"
               }
             }
           },
@@ -141,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+                "file": "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,7 +158,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+                "file": "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,15 +182,31 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b3bbf0167ccd1dfb",
+  "active": "29ab0f9054c6498a",
   "lastOpenFiles": [
-    "public/2025/08/25/机器学习/3.对比学习/损失函数-InfoNCE/index.html",
-    "public/2025/08/25/机器学习/3.对比学习/噪声对比估计-NCE/index.html",
-    "public/2025/08/25/机器学习/3.对比学习/损失函数-InfoNCE",
-    "public/2025/08/25/机器学习/3.对比学习/噪声对比估计-NCE",
-    "public/2025/08/25/机器学习/3.对比学习",
-    "public/2025/08/25/机器学习",
-    "public/2025/08/25",
+    "node_modules/katex/src/wide-character.js",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff",
+    "node_modules/mathjax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Regular.woff",
+    "node_modules/katex/node_modules/commander/Readme.md",
+    "node_modules/hexo-renderer-pandoc/README.md",
+    "node_modules/katex/src/metrics/README.md",
+    "node_modules/katex/README.md",
+    "node_modules/katex/dist/README.md",
+    "node_modules/katex/contrib/mhchem/README.md",
+    "node_modules/katex/contrib/mathtex-script-type/README.md",
+    "node_modules/katex/contrib/copy-tex/README.md",
+    "node_modules/katex/contrib/auto-render/README.md",
+    "node_modules/hexo-math/README.md",
+    "source/_posts/web/framework/husky test.md",
+    "source/_posts/我的第一篇hexo博客.md",
     "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
     "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
     "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100546253.png",
@@ -202,14 +218,8 @@
     "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100815646.png",
     "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100653204.png",
     "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100450172.png",
-    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE",
-    "source/_posts/机器学习/3.对比学习/resources",
-    "source/_posts/机器学习/对比学习/未命名",
-    "source/_posts/机器学习/1.基础知识",
-    "source/_posts/我的第一篇hexo博客.md",
     "source/_posts/front matter test.md",
     "source/_posts/hello-world.md",
-    "source/_posts/web/framework/husky test.md",
     "source/_posts/web/framework/category test.md",
     "source/_posts/web/framework/images/category test/image-20250811102632139.png",
     "node_modules/hexo-auto-category/node_modules/js-yaml/README.md",

@@ -1,6 +1,6 @@
 {
   "newLinkFormat": "relative",
-  "attachmentFolderPath": "./resources/噪声对比估计-NCE",
+  "attachmentFolderPath": "./resources/损失函数-InfoNCE",
   "useMarkdownLinks": true,
   "alwaysUpdateLinks": true,
   "newFileLocation": "current",
