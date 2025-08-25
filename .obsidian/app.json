@@ -1,6 +1,14 @@
 {
   "newLinkFormat": "relative",
-  "attachmentFolderPath": "./images/我的第一篇hexo博客",
+  "attachmentFolderPath": "./resources/噪声对比估计-NCE",
   "useMarkdownLinks": true,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "userIgnoreFilters": [
+    "node_modules/",
+    "public/",
+    "scaffolds/",
+    "Template/",
+    "themes/"
+  ]
 }

@@ -1,0 +1,64 @@
+{
+  "hideStrictPathFilters": true,
+  "pinFilters": {
+    "active": true,
+    "tags": [
+      {
+        "name": "",
+        "active": true,
+        "pattern": "",
+        "patternType": "STRICT"
+      }
+    ],
+    "paths": [
+      {
+        "name": "",
+        "active": true,
+        "type": "FILES_AND_DIRECTORIES",
+        "pattern": "",
+        "patternType": "WILDCARD"
+      }
+    ]
+  },
+  "hideFilters": {
+    "active": true,
+    "tags": [
+      {
+        "name": "",
+        "active": true,
+        "pattern": "",
+        "patternType": "STRICT"
+      }
+    ],
+    "paths": [
+      {
+        "name": "",
+        "active": false,
+        "type": "FILES_AND_DIRECTORIES",
+        "pattern": "scaffolds",
+        "patternType": "WILDCARD"
+      },
+      {
+        "name": "",
+        "active": false,
+        "type": "FILES_AND_DIRECTORIES",
+        "pattern": "node_modules",
+        "patternType": "WILDCARD"
+      },
+      {
+        "name": "",
+        "active": false,
+        "type": "FILES_AND_DIRECTORIES",
+        "pattern": "public",
+        "patternType": "WILDCARD"
+      },
+      {
+        "name": "",
+        "active": false,
+        "type": "FILES_AND_DIRECTORIES",
+        "pattern": "themes",
+        "patternType": "WILDCARD"
+      }
+    ]
+  }
+}

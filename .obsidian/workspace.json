@@ -13,9 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/我的第一篇hexo博客.md",
+                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "6a63d164b69cfb0a",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100450172.png"
               }
             }
           },
@@ -90,35 +100,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f080b34c5021555e",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/我的第一篇hexo博客.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "5948a5459265d933",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "source/_posts/我的第一篇hexo博客.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
             "id": "4a08e2646fc0e13b",
             "type": "leaf",
             "state": {
@@ -135,7 +116,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/我的第一篇hexo博客.md"
+                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md"
               }
             }
           },
@@ -148,7 +129,43 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
+      },
+      {
+        "id": "67a0fde37f0da829",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f080b34c5021555e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5948a5459265d933",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -167,8 +184,25 @@
   },
   "active": "29ab0f9054c6498a",
   "lastOpenFiles": [
-    "source/_posts/front matter test.md",
+    "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
+    "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100546253.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100708369.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100724807.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100739168.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100749409.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100802365.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100815646.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100653204.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100450172.png",
+    "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE",
+    "source/_posts/机器学习/3.对比学习/resources",
+    "source/_posts/机器学习/对比学习/未命名",
+    "source/_posts/机器学习/1.基础知识",
+    "source/_posts/机器学习/3.对比学习",
     "source/_posts/我的第一篇hexo博客.md",
+    "source/_posts/机器学习",
+    "source/_posts/front matter test.md",
     "source/_posts/hello-world.md",
     "public/2025/08/11/web/framework/category test/index.html",
     "public/2025/08/11/web/framework/category test",
@@ -177,17 +211,6 @@
     "source/_posts/web/framework/images/category test/image-20250811102632139.png",
     "source/_posts/web/framework/images/category test",
     "source/_posts/web/framework/images",
-    "source/_posts/images",
-    "source/_posts/web/framework/images/husky test/image-20250811100826480.png",
-    "source/_posts/web/framework/images/husky test",
-    "public/images/husky test/image-20250811095721884.png",
-    "public/images/husky test",
-    "public/images",
-    "public/2025/08/11/web/framework/husky test/index.html",
-    "public/2025/08/11/web/framework/husky test",
-    "source/images/husky test/image-20250811095721884.png",
-    "source/images/Pasted image 20250811092012.png",
-    "public/css/images/banner.jpg",
     "node_modules/hexo-auto-category/node_modules/js-yaml/README.md",
     "node_modules/hexo-auto-category/node_modules/js-yaml/CHANGELOG.md",
     "node_modules/hexo-auto-category/node_modules/argparse/CHANGELOG.md",
