@@ -1,5 +1,6 @@
 {
   "newLinkFormat": "relative",
-  "attachmentFolderPath": "source/images/husky test",
-  "useMarkdownLinks": true
+  "attachmentFolderPath": "./images/我的第一篇hexo博客",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true
 }
