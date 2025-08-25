@@ -129,7 +129,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "67a0fde37f0da829",
@@ -182,8 +182,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "29ab0f9054c6498a",
+  "active": "b3bbf0167ccd1dfb",
   "lastOpenFiles": [
+    "public/2025/08/25/机器学习/3.对比学习/损失函数-InfoNCE/index.html",
+    "public/2025/08/25/机器学习/3.对比学习/噪声对比估计-NCE/index.html",
+    "public/2025/08/25/机器学习/3.对比学习/损失函数-InfoNCE",
+    "public/2025/08/25/机器学习/3.对比学习/噪声对比估计-NCE",
+    "public/2025/08/25/机器学习/3.对比学习",
+    "public/2025/08/25/机器学习",
+    "public/2025/08/25",
     "source/_posts/机器学习/3.对比学习/损失函数-InfoNCE.md",
     "source/_posts/机器学习/3.对比学习/噪声对比估计-NCE.md",
     "source/_posts/机器学习/3.对比学习/resources/损失函数-InfoNCE/img-20250825100546253.png",
@@ -199,18 +206,12 @@
     "source/_posts/机器学习/3.对比学习/resources",
     "source/_posts/机器学习/对比学习/未命名",
     "source/_posts/机器学习/1.基础知识",
-    "source/_posts/机器学习/3.对比学习",
     "source/_posts/我的第一篇hexo博客.md",
-    "source/_posts/机器学习",
     "source/_posts/front matter test.md",
     "source/_posts/hello-world.md",
-    "public/2025/08/11/web/framework/category test/index.html",
-    "public/2025/08/11/web/framework/category test",
     "source/_posts/web/framework/husky test.md",
     "source/_posts/web/framework/category test.md",
     "source/_posts/web/framework/images/category test/image-20250811102632139.png",
-    "source/_posts/web/framework/images/category test",
-    "source/_posts/web/framework/images",
     "node_modules/hexo-auto-category/node_modules/js-yaml/README.md",
     "node_modules/hexo-auto-category/node_modules/js-yaml/CHANGELOG.md",
     "node_modules/hexo-auto-category/node_modules/argparse/CHANGELOG.md",
